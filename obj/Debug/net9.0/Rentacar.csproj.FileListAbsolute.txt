@@ -329,3 +329,4 @@ C:\Users\Özgür Özkan\source\repos\Rentacar\bin\Debug\net9.0\tr\Microsoft.Code
 C:\Users\Özgür Özkan\source\repos\Rentacar\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Özgür Özkan\source\repos\Rentacar\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Özgür Özkan\source\repos\Rentacar\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Özgür Özkan\source\repos\Rentacar\obj\Debug\net9.0\Rentacar.sourcelink.json
