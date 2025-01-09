@@ -18,8 +18,8 @@ _ReSharper.Caches
 *.vsconfig
 
 # Build results
-[Dd]ebug/
-[Rr]elease/
+debug/
+release/
 x64/
 x86/
 [Aa][Rr][Mm]/

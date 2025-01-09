@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rentacar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c8d696552a7754ff92c8b8e9c2ae313d18aba35")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e53f065c169f4479c9c5307bb9a63e5a529c47c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rentacar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rentacar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
