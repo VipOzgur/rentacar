@@ -56,7 +56,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive,Not")] User user)
+        public async Task<IActionResult> Create([Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive,Not")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive")] User user)
         {
             if (id != user.Id)
             {

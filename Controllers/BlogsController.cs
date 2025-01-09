@@ -13,7 +13,7 @@ namespace Rentacar.Controllers
     {
         private readonly DataContext _context;
 
-        public BlogsController()
+        public BlogsController() 
         {
             _context = new DataContext();
         }

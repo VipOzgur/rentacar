@@ -24,8 +24,8 @@ x64/
 x86/
 [Aa][Rr][Mm]/
 bld/
-bin/
-obj/
+[Bb]in/
+[Oo]bj/
 [Ll]og/
 TestResults/
 out/
