@@ -68,12 +68,72 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Extralars/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0cmFsYXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Extralars/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0cmFsYXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Extralars/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0cmFsYXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Extralars/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0cmFsYXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Extralars/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0cmFsYXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Kaskolars/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2Fza29sYXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Kaskolars/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2Fza29sYXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Kaskolars/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2Fza29sYXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Kaskolars/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2Fza29sYXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Kaskolars/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2Fza29sYXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Lokasyonlars/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9rYXN5b25sYXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Lokasyonlars/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9rYXN5b25sYXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Lokasyonlars/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9rYXN5b25sYXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Lokasyonlars/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9rYXN5b25sYXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Lokasyonlars/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9rYXN5b25sYXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Resims/Create.cshtml]
@@ -166,6 +226,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Yorumlars/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWW9ydW1sYXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Yorumlars/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWW9ydW1sYXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Yorumlars/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWW9ydW1sYXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Yorumlars/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWW9ydW1sYXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Özgür Özkan/source/repos/Rentacar/Views/Yorumlars/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWW9ydW1sYXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Özgür Özkan/source/repos/Rentacar/Views/_ViewImports.cshtml]

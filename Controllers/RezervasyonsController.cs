@@ -21,7 +21,7 @@ namespace Rentacar.Controllers
         // GET: Rezervasyons
         public async Task<IActionResult> Index()
         {
-            var dataContext = _context.Rezervasyons.Include(r => r.Arac).Include(r => r.User);
+            var dataContext = _context.Rezervasyons.Include(r => r.AlisLokasyon).Include(r => r.Arac).Include(r => r.TeslimLokasyon).Include(r => r.User);
             return View(await dataContext.ToListAsync());
         }
 
@@ -34,7 +34,9 @@ namespace Rentacar.Controllers
             }
 
             var rezervasyon = await _context.Rezervasyons
+                .Include(r => r.AlisLokasyon)
                 .Include(r => r.Arac)
+                .Include(r => r.TeslimLokasyon)
                 .Include(r => r.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (rezervasyon == null)
@@ -48,7 +50,9 @@ namespace Rentacar.Controllers
         // GET: Rezervasyons/Create
         public IActionResult Create()
         {
+            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id");
             ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id");
+            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id");
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
@@ -58,7 +62,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AracId,UserId,StartDate,FinishDate,Durum,Onay")] Rezervasyon rezervasyon)
+        public async Task<IActionResult> Create([Bind("Id,AracId,UserId,StartDate,FinishDate,Durum,Onay,AlisLokasyonId,TeslimLokasyonId,KaskoId,Fiyat,Not")] Rezervasyon rezervasyon)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +70,9 @@ namespace Rentacar.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.AlisLokasyonId);
             ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", rezervasyon.AracId);
+            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.TeslimLokasyonId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", rezervasyon.UserId);
             return View(rezervasyon);
         }
@@ -84,7 +90,9 @@ namespace Rentacar.Controllers
             {
                 return NotFound();
             }
+            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.AlisLokasyonId);
             ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", rezervasyon.AracId);
+            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.TeslimLokasyonId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", rezervasyon.UserId);
             return View(rezervasyon);
         }
@@ -94,7 +102,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AracId,UserId,StartDate,FinishDate,Durum,Onay")] Rezervasyon rezervasyon)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AracId,UserId,StartDate,FinishDate,Durum,Onay,AlisLokasyonId,TeslimLokasyonId,KaskoId,Fiyat,Not")] Rezervasyon rezervasyon)
         {
             if (id != rezervasyon.Id)
             {
@@ -121,7 +129,9 @@ namespace Rentacar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.AlisLokasyonId);
             ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", rezervasyon.AracId);
+            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.TeslimLokasyonId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", rezervasyon.UserId);
             return View(rezervasyon);
         }
@@ -135,7 +145,9 @@ namespace Rentacar.Controllers
             }
 
             var rezervasyon = await _context.Rezervasyons
+                .Include(r => r.AlisLokasyon)
                 .Include(r => r.Arac)
+                .Include(r => r.TeslimLokasyon)
                 .Include(r => r.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (rezervasyon == null)

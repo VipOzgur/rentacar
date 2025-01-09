@@ -43,6 +43,24 @@
             <th>
                 @Html.DisplayNameFor(model => model.Durum)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Depozito)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Km)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GoruntulemeSayisi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KiralanmaSayisi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MotorGucu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YakitKm)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -78,6 +96,24 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Durum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Depozito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Km)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoruntulemeSayisi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KiralanmaSayisi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotorGucu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YakitKm)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
