@@ -9,23 +9,23 @@ using Rentacar.Models;
 
 namespace Rentacar.Controllers
 {
-    public class UsersController : Controller
+    public class YorumlarsController : Controller
     {
         private readonly DataContext _context;
 
-        public UsersController()
+        public YorumlarsController()
         {
             _context = new DataContext();
         }
 
-        // GET: Users
+        // GET: Yorumlars
         public async Task<IActionResult> Index()
         {
-            var dataContext = _context.Users.Include(u => u.Role);
+            var dataContext = _context.Yorumlars.Include(y => y.Arac).Include(y => y.User);
             return View(await dataContext.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Yorumlars/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,42 +33,45 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .Include(u => u.Role)
+            var yorumlar = await _context.Yorumlars
+                .Include(y => y.Arac)
+                .Include(y => y.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (yorumlar == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(yorumlar);
         }
 
-        // GET: Users/Create
+        // GET: Yorumlars/Create
         public IActionResult Create()
         {
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id");
+            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Yorumlars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive,Not")] User user)
+        public async Task<IActionResult> Create([Bind("Id,Yorum,UserId,AracId,Durum")] Yorumlar yorumlar)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(yorumlar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", yorumlar.AracId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", yorumlar.UserId);
+            return View(yorumlar);
         }
 
-        // GET: Users/Edit/5
+        // GET: Yorumlars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +79,24 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var yorumlar = await _context.Yorumlars.FindAsync(id);
+            if (yorumlar == null)
             {
                 return NotFound();
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", yorumlar.AracId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", yorumlar.UserId);
+            return View(yorumlar);
         }
 
-        // POST: Users/Edit/5
+        // POST: Yorumlars/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive,Not")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Yorum,UserId,AracId,Durum")] Yorumlar yorumlar)
         {
-            if (id != user.Id)
+            if (id != yorumlar.Id)
             {
                 return NotFound();
             }
@@ -101,12 +105,12 @@ namespace Rentacar.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(yorumlar);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.Id))
+                    if (!YorumlarExists(yorumlar.Id))
                     {
                         return NotFound();
                     }
@@ -117,11 +121,12 @@ namespace Rentacar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", yorumlar.AracId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", yorumlar.UserId);
+            return View(yorumlar);
         }
 
-        // GET: Users/Delete/5
+        // GET: Yorumlars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,35 +134,36 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .Include(u => u.Role)
+            var yorumlar = await _context.Yorumlars
+                .Include(y => y.Arac)
+                .Include(y => y.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (yorumlar == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(yorumlar);
         }
 
-        // POST: Users/Delete/5
+        // POST: Yorumlars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
+            var yorumlar = await _context.Yorumlars.FindAsync(id);
+            if (yorumlar != null)
             {
-                _context.Users.Remove(user);
+                _context.Yorumlars.Remove(yorumlar);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool YorumlarExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Yorumlars.Any(e => e.Id == id);
         }
     }
 }

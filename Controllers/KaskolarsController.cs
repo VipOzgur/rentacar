@@ -9,23 +9,22 @@ using Rentacar.Models;
 
 namespace Rentacar.Controllers
 {
-    public class UsersController : Controller
+    public class KaskolarsController : Controller
     {
         private readonly DataContext _context;
 
-        public UsersController()
+        public KaskolarsController()
         {
             _context = new DataContext();
         }
 
-        // GET: Users
+        // GET: Kaskolars
         public async Task<IActionResult> Index()
         {
-            var dataContext = _context.Users.Include(u => u.Role);
-            return View(await dataContext.ToListAsync());
+            return View(await _context.Kaskolars.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Kaskolars/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,42 +32,39 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .Include(u => u.Role)
+            var kaskolar = await _context.Kaskolars
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (kaskolar == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(kaskolar);
         }
 
-        // GET: Users/Create
+        // GET: Kaskolars/Create
         public IActionResult Create()
         {
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Kaskolars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive,Not")] User user)
+        public async Task<IActionResult> Create([Bind("Id,Ad,GunlukFiyat,SaatlikFiyat")] Kaskolar kaskolar)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(kaskolar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            return View(kaskolar);
         }
 
-        // GET: Users/Edit/5
+        // GET: Kaskolars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +72,22 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var kaskolar = await _context.Kaskolars.FindAsync(id);
+            if (kaskolar == null)
             {
                 return NotFound();
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            return View(kaskolar);
         }
 
-        // POST: Users/Edit/5
+        // POST: Kaskolars/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive,Not")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,GunlukFiyat,SaatlikFiyat")] Kaskolar kaskolar)
         {
-            if (id != user.Id)
+            if (id != kaskolar.Id)
             {
                 return NotFound();
             }
@@ -101,12 +96,12 @@ namespace Rentacar.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(kaskolar);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.Id))
+                    if (!KaskolarExists(kaskolar.Id))
                     {
                         return NotFound();
                     }
@@ -117,11 +112,10 @@ namespace Rentacar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            return View(kaskolar);
         }
 
-        // GET: Users/Delete/5
+        // GET: Kaskolars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,35 +123,34 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .Include(u => u.Role)
+            var kaskolar = await _context.Kaskolars
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (kaskolar == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(kaskolar);
         }
 
-        // POST: Users/Delete/5
+        // POST: Kaskolars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
+            var kaskolar = await _context.Kaskolars.FindAsync(id);
+            if (kaskolar != null)
             {
-                _context.Users.Remove(user);
+                _context.Kaskolars.Remove(kaskolar);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool KaskolarExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Kaskolars.Any(e => e.Id == id);
         }
     }
 }
