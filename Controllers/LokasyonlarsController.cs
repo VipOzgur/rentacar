@@ -9,23 +9,22 @@ using Rentacar.Models;
 
 namespace Rentacar.Controllers
 {
-    public class UsersController : Controller
+    public class LokasyonlarsController : Controller
     {
         private readonly DataContext _context;
 
-        public UsersController()
+        public LokasyonlarsController()
         {
             _context = new DataContext();
         }
 
-        // GET: Users
+        // GET: Lokasyonlars
         public async Task<IActionResult> Index()
         {
-            var dataContext = _context.Users.Include(u => u.Role);
-            return View(await dataContext.ToListAsync());
+            return View(await _context.Lokasyonlars.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Lokasyonlars/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,42 +32,39 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .Include(u => u.Role)
+            var lokasyonlar = await _context.Lokasyonlars
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (lokasyonlar == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(lokasyonlar);
         }
 
-        // GET: Users/Create
+        // GET: Lokasyonlars/Create
         public IActionResult Create()
         {
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Lokasyonlars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive,Not")] User user)
+        public async Task<IActionResult> Create([Bind("Id,Ad,Kordinatlar,Durum,Fiyat")] Lokasyonlar lokasyonlar)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(lokasyonlar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            return View(lokasyonlar);
         }
 
-        // GET: Users/Edit/5
+        // GET: Lokasyonlars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +72,22 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var lokasyonlar = await _context.Lokasyonlars.FindAsync(id);
+            if (lokasyonlar == null)
             {
                 return NotFound();
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            return View(lokasyonlar);
         }
 
-        // POST: Users/Edit/5
+        // POST: Lokasyonlars/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive,Not")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Kordinatlar,Durum,Fiyat")] Lokasyonlar lokasyonlar)
         {
-            if (id != user.Id)
+            if (id != lokasyonlar.Id)
             {
                 return NotFound();
             }
@@ -101,12 +96,12 @@ namespace Rentacar.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(lokasyonlar);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.Id))
+                    if (!LokasyonlarExists(lokasyonlar.Id))
                     {
                         return NotFound();
                     }
@@ -117,11 +112,10 @@ namespace Rentacar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
-            return View(user);
+            return View(lokasyonlar);
         }
 
-        // GET: Users/Delete/5
+        // GET: Lokasyonlars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,35 +123,34 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .Include(u => u.Role)
+            var lokasyonlar = await _context.Lokasyonlars
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+            if (lokasyonlar == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(lokasyonlar);
         }
 
-        // POST: Users/Delete/5
+        // POST: Lokasyonlars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
+            var lokasyonlar = await _context.Lokasyonlars.FindAsync(id);
+            if (lokasyonlar != null)
             {
-                _context.Users.Remove(user);
+                _context.Lokasyonlars.Remove(lokasyonlar);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool LokasyonlarExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Lokasyonlars.Any(e => e.Id == id);
         }
     }
 }

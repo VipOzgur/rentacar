@@ -53,7 +53,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Aciklama,Plaka,Marka,Model,IsActive,Profil,Yakit,Vites,Fiyat,Durum")] Araclar araclar)
+        public async Task<IActionResult> Create([Bind("Id,Aciklama,Plaka,Marka,Model,IsActive,Profil,Yakit,Vites,Fiyat,Durum,Depozito,Km,GoruntulemeSayisi,KiralanmaSayisi,MotorGucu,YakitKm")] Araclar araclar)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Aciklama,Plaka,Marka,Model,IsActive,Profil,Yakit,Vites,Fiyat,Durum")] Araclar araclar)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Aciklama,Plaka,Marka,Model,IsActive,Profil,Yakit,Vites,Fiyat,Durum,Depozito,Km,GoruntulemeSayisi,KiralanmaSayisi,MotorGucu,YakitKm")] Araclar araclar)
         {
             if (id != araclar.Id)
             {
