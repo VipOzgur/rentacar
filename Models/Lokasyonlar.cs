@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Rentacar.Models;
 
-public partial class Lokasyonlar
+public partial class Lokasyonlar : BaseEntity
 {
-    public int Id { get; set; }
-
     public string Ad { get; set; } = null!;
 
     public int? Kordinatlar { get; set; }

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Rentacar.Models;
 
-public partial class Resim
+public partial class Resim : BaseEntity
 {
-    public int Id { get; set; }
-
     public int AracId { get; set; }
 
     public string Url { get; set; } = null!;

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Rentacar.Models;
 
-public partial class Araclar
+public partial class Araclar : BaseEntity
 {
-    public int Id { get; set; }
 
     public string? Aciklama { get; set; }
 
