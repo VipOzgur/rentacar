@@ -99,8 +99,6 @@ StyleCopReport.xml
 *.userprefs
 *.rsuser
 
-# Entity Framework migrations
-Migrations/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
