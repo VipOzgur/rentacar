@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Rentacar.Models;
 
-public partial class Yorumlar
+public partial class Yorumlar : BaseEntity
 {
-    public int Id { get; set; }
-
     public string Yorum { get; set; } = null!;
 
     public int? UserId { get; set; }

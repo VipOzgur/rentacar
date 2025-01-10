@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace Rentacar.Models;
 
-public partial class Extralar
-{
-    public int Id { get; set; }
+public partial class Extralar : BaseEntity
 
+{
     public string Ad { get; set; } = null!;
 
     public int? Fiyat { get; set; }

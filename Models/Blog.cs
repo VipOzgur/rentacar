@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Rentacar.Models;
 
-public partial class Blog
+public partial class Blog : BaseEntity
 {
-    public int Id { get; set; }
 
     public int? Tip { get; set; }
 
