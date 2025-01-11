@@ -1,74 +1,80 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - Rentacar</title>
-    <script type="importmap"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Rentacar.styles.css" asp-append-version="true" />
- 
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
 </head>
 
-<body> - -  
-    <!-- Header -->
-    <header class="bg-dark text-white text-center py-3">
-        <h1>Admin Paneli</h1>
-      
-    </header>
+<body>
+    <!-- Hamburger Menu -->
+    <button class="btn  d-md-none position-fixed top-0 start-0 m-3 hamburger-buton" id="hamburger-menu">
+        <i class="bi bi-list" style="font-size: 1.5rem ; color:white;"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="bg-dark text-white vh-100 position-fixed" id="sidebar">
+        <div class="d-flex flex-column align-items-center py-4">
+            <img src="/images/onur-rentacar.png" alt="Logo" class="logo-rentacar mb-2">
+            <h4 id="user-name" class="text-center">@User.Identity.Name</h4>
+            <p class="text-center">Rent A Car</p>
+        </div>
+        <ul class="nav flex-column px-2">
+            <li class="nav-item">
+                <a href="/Home/Index" class="nav-link text-white">
+                    <i class="bi bi-speedometer2"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Araclars/Index" class="nav-link text-white">
+                    <i class="bi bi-car-front"></i> Araç Yönetimi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Rezervasyons/Index" class="nav-link text-white">
+                    <i class="bi bi-calendar-check"></i> Rezervasyonlar
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Users/Index" class="nav-link text-white">
+                    <i class="bi bi-people"></i> Kullanıcılar
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Resims/Index" class="nav-link text-white">
+                    <i class="bi bi-image"></i> Resimler
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Blogs/Index" class="nav-link text-white">
+                    <i class="bi bi-book"></i> Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Roles/Index" class="nav-link text-white">
+                    <i class="bi bi-shield-lock"></i> Roller
+                </a>
+            </li>
+        </ul>
+    </aside>
 
     <!-- Main Content -->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <aside class="col-md-2 bg-light p-4">             
-                <h4>Admin Menu</h4>
-
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Resims" asp-action="Index">Resim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">User</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Araclars"
-                            asp-action="Index">Araçlar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Rezervasyons"
-                            asp-action="Index">Rezervasyon</a>
-                    </li>
-                </ul>
-            </aside>
-
-
-        </div>
-    </div>
-    <div class="container">
-        <main role="main" class="pb-3 col-md-9 p-4">
+    <div class="container-fluid" id="main-content">
+        <header class="main-content-üst text-white py-3">
+            <h1 class="text-center">Rent a Car </h1>
+        </header>
+        <main role="main" class="py-4 px-3">
             @RenderBody()
         </main>
     </div>
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-4">
-        <p>&copy; bu kısım js kodu ile footer ve ssl sertificası linki eklenecek </p>
-    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/admin.js" asp-append-version="true"></script>
 </body>
 
 </html>

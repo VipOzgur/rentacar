@@ -1,66 +1,48 @@
 ﻿@model IEnumerable<Rentacar.Models.Rezervasyon>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rezervasyonlar";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<!-- Sayfa Başlığı ve Yeni Rezervasyon Butonu -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fs-4">Rezervasyonlar</h1>
+    <a asp-action="Create" class="btn btn-primary btn-sm">+ Yeni Rezervasyon</a>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FinishDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Durum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Onay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Arac)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FinishDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Durum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Onay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Arac.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!-- Tablo -->
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+                <th>@Html.DisplayNameFor(model => model.FinishDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Durum)</th>
+                <th>@Html.DisplayNameFor(model => model.Onay)</th>
+                <th class="d-none d-md-table-cell">@Html.DisplayNameFor(model => model.Arac)</th>
+                <th class="d-none d-md-table-cell">@Html.DisplayNameFor(model => model.User)</th>
+                <th>Aksiyonlar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(item.StartDate != null ? DateTime.Parse(item.StartDate).ToShortDateString() : "N/A")</td>
+                    <td>@(item.FinishDate != null ? DateTime.Parse(item.FinishDate).ToShortDateString() : "N/A")</td>
+                    <td>@item.Durum</td>
+                    <td>@(item.Onay.HasValue ? (item.Onay.Value == 1 ? "Evet" : "Hayır") : "Belirsiz")</td>
+                    <td class="d-none d-md-table-cell">@item.Arac?.Id ?? "N/A"</td>
+                    <td class="d-none d-md-table-cell">@item.User?.Id ?? "N/A"</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+            }
+        </tbody>
+    </table>
+</div>
