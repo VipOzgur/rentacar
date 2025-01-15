@@ -27,6 +27,8 @@ public partial class DataContext : DbContext
 
     public virtual DbSet<Resim> Resims { get; set; }
 
+    public virtual DbSet<DbLogs> DbLogs{ get; set; }
+
     public virtual DbSet<Rezervasyon> Rezervasyons { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -35,9 +37,7 @@ public partial class DataContext : DbContext
 
     public virtual DbSet<Yorumlar> Yorumlars { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source=.//Data//data.db");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)=> optionsBuilder.UseSqlite("Data Source=.//Data//data.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -115,6 +115,12 @@ public partial class DataContext : DbContext
             entity.ToTable("Role");
 
             entity.HasIndex(e => e.Id, "IX_Role_Id").IsUnique();
+        });
+        modelBuilder.Entity<DbLogs>(entity =>
+        {
+            entity.ToTable("DbLogs");
+
+            entity.HasIndex(e => e.Id, "IX_DbLogs_Id").IsUnique();
         });
 
         modelBuilder.Entity<User>(entity =>

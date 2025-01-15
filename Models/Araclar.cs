@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rentacar.Models;
 
 public partial class Araclar : BaseEntity
 {
+    [NotMapped]
+    public IFormFile? ImageFile { get; set; }
+    [NotMapped]
+    public List<IFormFile>? ImageFiles { get; set; }
 
     public string? Aciklama { get; set; }
 
