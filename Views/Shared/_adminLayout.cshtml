@@ -11,71 +11,82 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="/images/onur-rentacar.png" alt="Onur Rent a Car" class="loader-image">
+        <div class="loading-text">Yükleniyor...</div>
+    </div>
+
     <!-- Hamburger Menu -->
-    <button class="btn  d-md-none position-fixed top-0 start-0 m-3 hamburger-buton" id="hamburger-menu">
-        <i class="bi bi-list" style="font-size: 1.5rem ; color:white;"></i>
-    </button>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
     <!-- Sidebar -->
-    <aside class="bg-dark text-white vh-100 position-fixed" id="sidebar">
-        <div class="d-flex flex-column align-items-center py-4">
-            <img src="/images/onur-rentacar.png" alt="Logo" class="logo-rentacar mb-2">
-            <h4 id="user-name" class="text-center">@User.Identity.Name</h4>
-            <p class="text-center">Rent A Car</p>
-        </div>
-        <ul class="nav flex-column px-2">
-            <li class="nav-item">
-                <a href="/Home/Index" class="nav-link text-white">
-                    <i class="bi bi-speedometer2"></i> Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Araclars/Index" class="nav-link text-white">
-                    <i class="bi bi-car-front"></i> Araç Yönetimi
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Rezervasyons/Index" class="nav-link text-white">
-                    <i class="bi bi-calendar-check"></i> Rezervasyonlar
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Users/Index" class="nav-link text-white">
-                    <i class="bi bi-people"></i> Kullanıcılar
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Resims/Index" class="nav-link text-white">
-                    <i class="bi bi-image"></i> Resimler
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Blogs/Index" class="nav-link text-white">
-                    <i class="bi bi-book"></i> Blog
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Roles/Index" class="nav-link text-white">
-                    <i class="bi bi-shield-lock"></i> Roller
-                </a>
-            </li>
-        </ul>
-    </aside>
+    <div class="wrapper">
+        <aside class="bg-dark text-white vh-100 position-fixed" id="sidebar">
+            <div class="d-flex flex-column align-items-center py-4">
+                <img src="/images/onur-rentacar.png" alt="Logo" class="logo-rentacar mb-2">
+                <h4 id="user-name" class="text-center">@User.Identity.Name</h4>
+                <p class="text-center">Rent A Car</p>
+            </div>
+            <ul class="nav flex-column px-2">
+                <li class="nav-item">
+                    <a href="/Home/Index" class="nav-link text-white">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Araclars/Index" class="nav-link text-white">
+                        <i class="bi bi-car-front"></i> Araç Yönetimi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Rezervasyons/Index" class="nav-link text-white">
+                        <i class="bi bi-calendar-check"></i> Rezervasyonlar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Users/Index" class="nav-link text-white">
+                        <i class="bi bi-people"></i> Kullanıcılar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Resims/Index" class="nav-link text-white">
+                        <i class="bi bi-image"></i> Resimler
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Blogs/Index" class="nav-link text-white">
+                        <i class="bi bi-book"></i> Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Roles/Index" class="nav-link text-white">
+                        <i class="bi bi-shield-lock"></i> Roller
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
 
-    <!-- Main Content -->
-    <div class="container-fluid" id="main-content">
-        <header class="main-content-üst text-white py-3">
-            <h1 class="text-center">Rent a Car </h1>
-        </header>
-        <main role="main" class="py-4 px-3">
-            @RenderBody()
-        </main>
+        <!-- Main Content -->
+        <div class="container-fluid background-img" id="main-content">
+            <header class="main-content-üst text-white py-3">
+                <h1 class="text-center">Rent a Car</h1>
+            </header>
+            <main role="main" class="py-4 px-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/admin.js" asp-append-version="true"></script>
-     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

@@ -6,4 +6,6 @@
         public string CreateDate { get; set; } = DateTime.Now.ToString();
         public string UpdateDate { get; set; } = DateTime.Now.ToString();
     }
+
+
 }

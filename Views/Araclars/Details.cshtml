@@ -5,111 +5,117 @@
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Araclar</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Aciklama)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Aciklama)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Plaka)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Plaka)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Marka)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Marka)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Profil)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Profil)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Yakit)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Yakit)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vites)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vites)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fiyat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fiyat)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Durum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Durum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Depozito)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Depozito)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Km)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Km)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GoruntulemeSayisi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GoruntulemeSayisi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KiralanmaSayisi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KiralanmaSayisi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MotorGucu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MotorGucu)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.YakitKm)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.YakitKm)
-        </dd>
-    </dl>
+
+<div class="details-card shadow-lg p-4 bg-white rounded">
+    <h4 class="section-title text-center mb-3">Araç Bilgileri</h4>
+    <hr class="mb-4" />
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Açıklama:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Aciklama)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Plaka:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Plaka)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Marka:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Marka)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Model:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Model)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Fiyat:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Fiyat)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Aktiflik:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.IsActive)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Profil:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Profil)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Kiralanma Sayısı:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.KiralanmaSayisi)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Görüntülenme Sayısı:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.GoruntulemeSayisi)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Durum:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Durum)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Motor Gücü:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.MotorGucu)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Depozito:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Depozito)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Kilometre:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Km)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Yakıt:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Yakit)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Km Başına Yakıt:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.YakitKm)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Vites:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Vites)</span>
+            </div>
+        </div>
+        <!-- Daha fazla detay için aynı yapıyı devam ettirin -->
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="action-buttons text-center mt-4">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary me-3">
+        <i class="bi bi-pencil"></i> Düzenle
+    </a>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Geri Dön
+    </a>
 </div>

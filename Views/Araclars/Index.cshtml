@@ -5,122 +5,40 @@
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Index</h1>
-
+<h1 class="page-header">Araçlar</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="create-button">Araç Ekle</a>
 </p>
-<table class="table">
-    <thead>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Aciklama)</th>
+                <th>@Html.DisplayNameFor(model => model.Plaka)</th>
+                <th>@Html.DisplayNameFor(model => model.Marka)</th>
+                <th>@Html.DisplayNameFor(model => model.Model)</th>
+                <th>@Html.DisplayNameFor(model => model.Fiyat)</th>
+                <th>@Html.DisplayNameFor(model => model.Durum)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Aciklama)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plaka)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marka)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Profil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Yakit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vites)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fiyat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Durum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Depozito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Km)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GoruntulemeSayisi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KiralanmaSayisi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MotorGucu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.YakitKm)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Aciklama)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Plaka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profil)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yakit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vites)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fiyat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Durum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Depozito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Km)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GoruntulemeSayisi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KiralanmaSayisi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MotorGucu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YakitKm)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td data-label="Açıklama">@Html.DisplayFor(modelItem => item.Aciklama)</td>
+            <td data-label="Plaka">@Html.DisplayFor(modelItem => item.Plaka)</td>
+            <td data-label="Marka">@Html.DisplayFor(modelItem => item.Marka)</td>
+            <td data-label="Model">@Html.DisplayFor(modelItem => item.Model)</td>
+            <td data-label="Fiyat">@Html.DisplayFor(modelItem => item.Fiyat)</td>
+            <td data-label="Durum">@Html.DisplayFor(modelItem => item.Durum)</td>
+            <td data-label="Aksiyonlar">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Düzenle</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detaylar</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Araç Sil</a>
             </td>
         </tr>
-}
-    </tbody>
-</table>
+    }
+</tbody>
+    </table>
+</div>
