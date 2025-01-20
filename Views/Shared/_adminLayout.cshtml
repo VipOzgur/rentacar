@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿﻿@using System.Security.Claims;
+@{
+    bool isAuthenticated = User.Identity.IsAuthenticated;
+    var userName = (isAuthenticated)? User.FindFirst(ClaimTypes.NameIdentifier).Value :"Misafir";
+    var userId = (isAuthenticated) ? User.FindFirst(ClaimTypes.Sid).Value:"-1";
+    var userRole = (isAuthenticated) ? User.FindFirst(ClaimTypes.Role).Value : "User";
+    var userProfil = (isAuthenticated) ? User.FindFirst(ClaimTypes.UserData).Value : "/imagess/default.png";
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,10 +28,24 @@
     <aside class="bg-dark text-white vh-100 position-fixed" id="sidebar">
         <div class="d-flex flex-column align-items-center py-4">
             <img src="/images/onur-rentacar.png" alt="Logo" class="logo-rentacar mb-2">
-            <h4 id="user-name" class="text-center">@User.Identity.Name</h4>
+            <a asp-action="Details" asp-controller="Users" asp-route-id="@userId" style=" text-decoration: none; color: inherit;">
+            <img src="@userProfil" style="height:20px; width:auto;" alt="Admin Profil" class="">
+            <h4 id="user-name" class="text-center">@userName</h4>
+            <h4 id="user-name" class="text-center"> | @userRole</h4>
+            </a>    
             <p class="text-center">Rent A Car</p>
         </div>
         <ul class="nav flex-column px-2">
+            <li class="nav-item">
+                <a href="/Login/Login" class="nav-link text-white" style="color:greenyellow;">
+                    <i class="bi bi-speedometer2"></i> Giriş
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Home/Index" class="nav-link text-white" style="color:red;">
+                    <i class="bi bi-speedometer2"></i> Çıkış
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="/Home/Index" class="nav-link text-white">
                     <i class="bi bi-speedometer2"></i> Dashboard

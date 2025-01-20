@@ -34,7 +34,7 @@ namespace Rentacar.Controllers
             if (p.Ad == null || p.Password == null)
             {
                 TempData["hata"] = "Boşlukları Doldurunuz";
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "Login");
             }
             var personel = _context.Users.Include(p => p.Role).FirstOrDefault(x => x.Ad == p.Ad && x.Password == helperClass.Hash(p.Password));
             if (personel != null)
@@ -51,7 +51,7 @@ namespace Rentacar.Controllers
                     AllowRefresh = true
                 };
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
-                TempData["mesaj"] = $"Ad: {personel.Ad} Role: {personel.Role.Ad} Giris yapýldý.";
+                TempData["mesaj"] = $"Ad: {personel.Ad} Role: {personel.Role.Ad} Giris yapildi.";
                 return RedirectToAction("Index", "Home");
             }
             TempData["hata"] = "Giriþ bilgileriniz yanlış";
