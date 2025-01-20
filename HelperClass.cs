@@ -8,38 +8,38 @@ namespace Rentacar
 {
     public class HelperClass
     {
-        //string imageExtension = "";
-        //string imageName = "";
-        //string imagePath = "";
-        //public async Task<string?> ImageSaveAsync(IFormFile formFile )
-        //{
-        //    if (formFile == null || formFile.Length == 0)
-        //    {
-        //        return null;
-        //    }
-        //    //ImageFile dolu ise ekliyoruz
-        //    imageExtension = Path.GetExtension(formFile.FileName);
-        //    imageName = DateTime.UtcNow.ToString("dd-MM-yyyy_HH-mm-ss") + imageExtension;
-        //    imagePath = Path.Combine("../Rentacar/wwwroot/imagess/" + imageName);
-        //    await using (var fileStream = new FileStream(imagePath, FileMode.Create))
-        //    {
-        //        await formFile.CopyToAsync(fileStream);
-        //    }
+        string imageExtension = "";
+        string imageName = "";
+        string imagePath = "";
+        public async Task<string?> ImageSaveDefaultAsync(IFormFile formFile , string? name)
+        {
+            if (formFile == null || formFile.Length == 0)
+            {
+                return null;
+            }
+            //ImageFile dolu ise ekliyoruz
+            imageExtension = Path.GetExtension(formFile.FileName);
+            imageName = name +DateTime.UtcNow.ToString("dd-MM-yyyy_HH-mm-ss") + imageExtension;
+            imagePath = Path.Combine("../Rentacar/wwwroot/imagess/" + imageName);
+            await using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await formFile.CopyToAsync(fileStream);
+            }
 
-        //    return "/imagess/" + imageName;
-        //}
+            return "/imagess/" + imageName;
+        }
 
 
-        public async Task<string?> ImageSaveAsWebPAsync(IFormFile formFile)
+        public async Task<string?> ImageSaveAsWebPAsync(IFormFile formFile, string? name)
         {
             if (formFile == null || formFile.Length == 0)
             {
                 return null;
             }
 
-            string imageExtension = Path.GetExtension(formFile.FileName);
-            string imageName = DateTime.UtcNow.ToString("dd-MM-yyyy_HH-mm-ss") + ".webp";
-            string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagess", imageName);
+             imageExtension = Path.GetExtension(formFile.FileName);
+            imageName = DateTime.UtcNow.ToString("dd-MM-yyyy_HH-mm-ss") + ".webp";
+            imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagess", imageName);
 
             try
             {

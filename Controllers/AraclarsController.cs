@@ -66,7 +66,7 @@ namespace Rentacar.Controllers
                 {
                     try
                     {
-                        imgPath = await helperClass.ImageSaveAsWebPAsync(araclar.ImageFile);
+                        imgPath = await helperClass.ImageSaveAsWebPAsync(araclar.ImageFile,araclar.Marka+araclar.Model);
                         araclar.Profil = imgPath; //Resim yolunu veri tabanına ekleme
                     }
                     catch (Exception)
@@ -90,7 +90,7 @@ namespace Rentacar.Controllers
                     {
                         foreach (var item in araclar.ImageFiles)
                         {
-                            imgPath = await helperClass.ImageSaveAsWebPAsync(item);
+                            imgPath = await helperClass.ImageSaveAsWebPAsync(item,araclar.Marka+araclar.Model);
                             araclar.Resims.Add(new Resim { Url=imgPath, AltG="Araç Resmi"});
                         }
                     }
