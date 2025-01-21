@@ -24,7 +24,8 @@ namespace Rentacar.Controllers
             if (claimUser.Identity.IsAuthenticated)
             {
                 TempData["mesaj"] = $"Ad: {User.FindFirst(ClaimTypes.NameIdentifier).Value} Role: {User.FindFirst(ClaimTypes.Role).Value} Giris yapıldı";
-                return RedirectToAction("Index", "Home");
+
+                return RedirectToAction("Index", "Admin");
             }
             return View();
         }
@@ -52,7 +53,7 @@ namespace Rentacar.Controllers
                 };
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
                 TempData["mesaj"] = $"Ad: {personel.Ad} Role: {personel.Role.Ad} Giris yapildi.";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Admin");
             }
             TempData["hata"] = "Giriþ bilgileriniz yanlış";
             return View();

@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿﻿@using System.Security.Claims;
+@{
+    bool isAuthenticated = User.Identity.IsAuthenticated;
+    var userName = (isAuthenticated) ? User.FindFirst(ClaimTypes.NameIdentifier).Value : "Misafir";
+    var userId = (isAuthenticated) ? User.FindFirst(ClaimTypes.Sid).Value : "-1";
+    var userRole = (isAuthenticated) ? User.FindFirst(ClaimTypes.Role).Value : "User";
+    var userProfil = (isAuthenticated) ? User.FindFirst(ClaimTypes.UserData).Value : "/imagess/default.png";
+} 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,22 +31,30 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        
+                        @if (isAuthenticated)
+                        {
+                            
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a asp-action="Profil" asp-controller="Home"  style=" text-decoration: none; color: inherit;">
+                                <img src="@userProfil" style="height:20px; width:auto;" alt="User Profil" class=""><h4 id="user-name" class="text-center">@userName</h4><h4 id="user-name" class="text-center"> | @userRole</h4>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Roles"
-                                asp-action="Index">Roles</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="RezervasyonUser" asp-action="Index">Rezervasyonlarım</a>
                         </li>
+                        }else{
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a>
+                            <a asp-action="Login" asp-controller="Login"  style=" text-decoration: none; color: inherit;">
+                                    <img src="~/imagess/default.png" style="height:20px; width:auto;" alt="User Profil" class=""><h4 id="user-name" class="text-center">Giriş yap</h4><h4 id="user-name" class="text-center"> | Kayıt ol</h4>
+                            </a>
+
                         </li>
+                        }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Resims"
-                                asp-action="Index">Resim</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">User</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="RezervasyonUser"
+                                asp-action="Araclar">Araçlar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home"
