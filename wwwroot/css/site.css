@@ -1,4 +1,6 @@
-html {
+html body {
+    margin:0;
+    padding:0;
   font-size: 14px;
 }
 
@@ -8,24 +10,26 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+
+.footer {
+    position: fixed; /* Sayfanýn en altýnda sabit durmasý için */
+    bottom: 0; /* Alt kýsmýna yapýþtýr */
+    left: 0;
+    width: 100%; /* Geniþliði tüm sayfayý kaplar */
+    text-align: center; /* Metni ortalar */
+    background-color: darkgrey; /* Ýsteðe baðlý bir arka plan rengi */
+    padding: 5px 0; /* Yukarý ve aþaðý boþluk ekler */
+    padding-left: 30%; /* Metni saða kaydýrýr */
+    justify-content:flex-end;
+    align-content:end;
+    align-items:flex-end;
+
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
 
-body {
-  margin-bottom: 60px;
-}
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
-}
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
-}
+
+
+
+

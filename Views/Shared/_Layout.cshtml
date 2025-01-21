@@ -7,53 +7,126 @@
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Rentacar.styles.css" asp-append-version="true" />
+    
+    @RenderSection("ozelCss", required: false)
+    <style>
+        /* Navbar'ın içeriği ile aynı hizaya gelmesini sağla */
+        .navbar {
+            width: 100%;
+            padding: 1.5rem 0; /* Navbar'a daha fazla padding ekleyerek aşağı doğru genişletiyoruz */
+            background-color: #007bff; /* Navbar arka plan rengi */
+            height: 120px; /* Yüksekliği artırdık */
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.3rem; /* Yazı boyutunu biraz daha büyüttük */
+            padding: 0.5rem 1rem; /* Menü öğeleri arasındaki boşluğu artırdık */
+        }
+
+        /* Navbar rengi ve yazı renkleri */
+        .navbar {
+            background-color:dimgrey;
+        }
+
+        .navbar-nav .nav-link {
+            color:darkgoldenrod;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: black; /* Hover durumunda yazı rengini değiştirdik */
+            }
+
+        .navbar-collapse {
+            justify-content: flex-end;
+        }
+
+        /* Navbar içeriği, sayfa içeriği ile aynı hizada */
+        .navbar .container-fluid {
+            max-width: 1200px; /* Sayfa içeriği genişliği */
+            margin: 0 auto;
+        }
+
+        /* Navbar'daki menü öğelerini kutu içine almak */
+        .menu-box {
+            background-color:dimgray; /* Gri arka plan */
+            border-radius: 10px; /* Köşe yuvarlama */
+            padding: 10px 20px; /* İç boşluk */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+        }
+
+            .menu-box .nav-item {
+                margin-right: 20px; /* Menü öğeleri arasına boşluk */
+            }
+
+            .menu-box .nav-link {
+                color:darkgoldenrod; /* Menü yazıları beyaz */
+                font-weight: bold; /* Kalın yazı */
+            }
+
+                .menu-box .nav-link:hover {
+                    background-color: #ff9800; /* Hover durumunda maviye dönüş */
+                    color: #fff; /* Yazı rengi beyaz */
+                }
+    </style>
 </head>
-<body>
+<body class="bg-light">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Rentacar</a>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index" style="font-size: 1.8rem;">Rentacar</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Resims" asp-action="Index">Resim</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <div class="menu-box">
+                        <!-- Menü kutusu ekledik -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Resims" asp-action="Index">Resim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Index">User</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div> <!-- Menü kutusu kapandı -->
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody() <!-- Sayfa içeriği buraya render edilecek -->
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Rentacar - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <div class="container footer">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+        </footer>
+    </div>
+
+    <!-- JS dosyaları -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
