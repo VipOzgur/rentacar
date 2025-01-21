@@ -18,14 +18,14 @@ _ReSharper.Caches
 *.vsconfig
 
 # Build results
-[Dd]ebug/
-[Rr]elease/
+debug/
+release/
 x64/
 x86/
 [Aa][Rr][Mm]/
 bld/
-[Bb]in/
-[Oo]bj/
+bin/
+obj/
 [Ll]og/
 TestResults/
 out/
@@ -99,8 +99,6 @@ StyleCopReport.xml
 *.userprefs
 *.rsuser
 
-# Entity Framework migrations
-Migrations/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Rentacar.Models;
 
 namespace Rentacar.Controllers
@@ -12,6 +14,8 @@ namespace Rentacar.Controllers
     public class AraclarsController : Controller
     {
         private readonly DataContext _context;
+        private HelperClass helperClass = new HelperClass();
+        private  string imgPath = "";
 
         public AraclarsController()
         {
@@ -32,7 +36,7 @@ namespace Rentacar.Controllers
                 return NotFound();
             }
 
-            var araclar = await _context.Araclars
+            var araclar = await _context.Araclars.Include(r=>r.Resims)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (araclar == null)
             {
@@ -53,10 +57,53 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Aciklama,Plaka,Marka,Model,IsActive,Profil,Yakit,Vites,Fiyat,Durum")] Araclar araclar)
+        public async Task<IActionResult> Create([FromForm] Araclar araclar)
         {
             if (ModelState.IsValid)
             {
+                
+                if (araclar.ImageFile != null)
+                {
+                    try
+                    {
+                        imgPath = await helperClass.ImageSaveAsWebPAsync(araclar.ImageFile,araclar.Marka+araclar.Model);
+                        araclar.Profil = imgPath; //Resim yolunu veri tabanına ekleme
+                    }
+                    catch (Exception)
+                    {
+                        araclar.Profil = "/imagess/default.png";
+                        _context.DbLogs.Add(new DbLogs
+                        {
+                            Not = "",
+                            Message = "Resim ekleme",
+                            Konum= "Araclars Create"
+                        }); ;
+                    }
+                }
+                else
+                {
+                    //değil ise varsayılanı ekliyoruz
+                    araclar.Profil = "/imagess/default.png";
+                }
+                if (araclar.ImageFiles != null) {
+                    try
+                    {
+                        foreach (var item in araclar.ImageFiles)
+                        {
+                            imgPath = await helperClass.ImageSaveAsWebPAsync(item,araclar.Marka+araclar.Model);
+                            araclar.Resims.Add(new Resim { Url=imgPath, AltG="Araç Resmi"});
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        _context.DbLogs.Add(new DbLogs
+                        {
+                            Not = "",
+                            Message = "Resim ekleme",
+                            Konum = "Araclars Create"
+                        });
+                    }
+                }
                 _context.Add(araclar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,7 +132,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Aciklama,Plaka,Marka,Model,IsActive,Profil,Yakit,Vites,Fiyat,Durum")] Araclar araclar)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Aciklama,Plaka,Marka,Model,IsActive,Profil,Yakit,Vites,Fiyat,Durum,Depozito,Km,GoruntulemeSayisi,KiralanmaSayisi,MotorGucu,YakitKm")] Araclar araclar)
         {
             if (id != araclar.Id)
             {

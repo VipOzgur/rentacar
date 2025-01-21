@@ -19,7 +19,15 @@ public partial class DataContext : DbContext
 
     public virtual DbSet<Blog> Blogs { get; set; }
 
+    public virtual DbSet<Extralar> Extralars { get; set; }
+
+    public virtual DbSet<Kaskolar> Kaskolars { get; set; }
+
+    public virtual DbSet<Lokasyonlar> Lokasyonlars { get; set; }
+
     public virtual DbSet<Resim> Resims { get; set; }
+
+    public virtual DbSet<DbLogs> DbLogs{ get; set; }
 
     public virtual DbSet<Rezervasyon> Rezervasyons { get; set; }
 
@@ -27,9 +35,9 @@ public partial class DataContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source=.//Data//data.db");
+    public virtual DbSet<Yorumlar> Yorumlars { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)=> optionsBuilder.UseSqlite("Data Source=.//Data//data.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -51,6 +59,27 @@ public partial class DataContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
+        modelBuilder.Entity<Extralar>(entity =>
+        {
+            entity.ToTable("Extralar");
+
+            entity.HasIndex(e => e.Id, "IX_Extralar_Id").IsUnique();
+        });
+
+        modelBuilder.Entity<Kaskolar>(entity =>
+        {
+            entity.ToTable("Kaskolar");
+
+            entity.HasIndex(e => e.Id, "IX_Kaskolar_Id").IsUnique();
+        });
+
+        modelBuilder.Entity<Lokasyonlar>(entity =>
+        {
+            entity.ToTable("Lokasyonlar");
+
+            entity.HasIndex(e => e.Id, "IX_Lokasyonlar_Id").IsUnique();
+        });
+
         modelBuilder.Entity<Resim>(entity =>
         {
             entity.ToTable("Resim");
@@ -68,9 +97,13 @@ public partial class DataContext : DbContext
 
             entity.HasIndex(e => e.Id, "IX_Rezervasyon_Id").IsUnique();
 
+            entity.HasOne(d => d.AlisLokasyon).WithMany(p => p.RezervasyonAlisLokasyons).HasForeignKey(d => d.AlisLokasyonId);
+
             entity.HasOne(d => d.Arac).WithMany(p => p.Rezervasyons)
                 .HasForeignKey(d => d.AracId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            entity.HasOne(d => d.TeslimLokasyon).WithMany(p => p.RezervasyonTeslimLokasyons).HasForeignKey(d => d.TeslimLokasyonId);
 
             entity.HasOne(d => d.User).WithMany(p => p.Rezervasyons)
                 .HasForeignKey(d => d.UserId)
@@ -83,6 +116,12 @@ public partial class DataContext : DbContext
 
             entity.HasIndex(e => e.Id, "IX_Role_Id").IsUnique();
         });
+        modelBuilder.Entity<DbLogs>(entity =>
+        {
+            entity.ToTable("DbLogs");
+
+            entity.HasIndex(e => e.Id, "IX_DbLogs_Id").IsUnique();
+        });
 
         modelBuilder.Entity<User>(entity =>
         {
@@ -93,6 +132,17 @@ public partial class DataContext : DbContext
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<Yorumlar>(entity =>
+        {
+            entity.ToTable("Yorumlar");
+
+            entity.HasIndex(e => e.Id, "IX_Yorumlar_Id").IsUnique();
+
+            entity.HasOne(d => d.Arac).WithMany(p => p.Yorumlars).HasForeignKey(d => d.AracId);
+
+            entity.HasOne(d => d.User).WithMany(p => p.Yorumlars).HasForeignKey(d => d.UserId);
         });
 
         OnModelCreatingPartial(modelBuilder);

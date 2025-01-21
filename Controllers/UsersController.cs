@@ -12,6 +12,8 @@ namespace Rentacar.Controllers
     public class UsersController : Controller
     {
         private readonly DataContext _context;
+        private HelperClass helperClass = new HelperClass();
+        private string imgPath = "";
 
         public UsersController()
         {
@@ -47,7 +49,7 @@ namespace Rentacar.Controllers
         // GET: Users/Create
         public IActionResult Create()
         {
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id");
+            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Ad");
             return View();
         }
 
@@ -56,15 +58,40 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive")] User user)
+        public async Task<IActionResult> Create([FromForm] User user)
         {
             if (ModelState.IsValid)
             {
+                if (user.ImageFile != null)
+                {
+                    try
+                    {
+                        imgPath = await helperClass.ImageSaveAsWebPAsync(user.ImageFile,user.Ad+user.Soyad);
+                        user.Profil = imgPath; //Resim yolunu veri tabanına ekleme
+                    }
+                    catch (Exception)
+                    {
+                        user.Profil = "/imagess/default.png";
+                        _context.DbLogs.Add(new DbLogs
+                        {
+                            Not = "",
+                            Message = "Resim ekleme",
+                            Konum = "Araclars Create"
+                        }); ;
+                    }
+                }
+                else
+                {
+                    //değil ise varsayılanı ekliyoruz
+                    user.Profil = "/imagess/default.png";
+                }
+                string passwordHash =  helperClass.Hash(user.Password);
+                user.Password = passwordHash;
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
+            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Ad", user.RoleId);
             return View(user);
         }
 
@@ -81,7 +108,7 @@ namespace Rentacar.Controllers
             {
                 return NotFound();
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
+            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Ad", user.RoleId);
             return View(user);
         }
 
@@ -90,7 +117,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Soyad,Telefon,Adres,Eposta,Password,RoleId,IsActive")] User user)
+        public async Task<IActionResult> Edit(int id, [FromForm] User user)
         {
             if (id != user.Id)
             {
@@ -101,6 +128,7 @@ namespace Rentacar.Controllers
             {
                 try
                 {
+
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
@@ -117,7 +145,7 @@ namespace Rentacar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id", user.RoleId);
+            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Ad", user.RoleId);
             return View(user);
         }
 

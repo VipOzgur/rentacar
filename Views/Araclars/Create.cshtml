@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
 <h1>Create</h1>
@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data"> 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Aciklama" class="control-label"></label>
@@ -39,9 +39,14 @@
                 <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Profil" class="control-label"></label>
-                <input asp-for="Profil" class="form-control" />
-                <span asp-validation-for="Profil" class="text-danger"></span>
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" type="file" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFiles" class="control-label"></label>
+                <input asp-for="ImageFiles" type="file" multiple class="form-control" />
+                <span asp-validation-for="ImageFiles" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Yakit" class="control-label"></label>
@@ -64,6 +69,36 @@
                 <span asp-validation-for="Durum" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Depozito" class="control-label"></label>
+                <input asp-for="Depozito" class="form-control" />
+                <span asp-validation-for="Depozito" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Km" class="control-label"></label>
+                <input asp-for="Km" class="form-control" />
+                <span asp-validation-for="Km" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GoruntulemeSayisi" class="control-label"></label>
+                <input asp-for="GoruntulemeSayisi" class="form-control" />
+                <span asp-validation-for="GoruntulemeSayisi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KiralanmaSayisi" class="control-label"></label>
+                <input asp-for="KiralanmaSayisi" class="form-control" />
+                <span asp-validation-for="KiralanmaSayisi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MotorGucu" class="control-label"></label>
+                <input asp-for="MotorGucu" class="form-control" />
+                <span asp-validation-for="MotorGucu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YakitKm" class="control-label"></label>
+                <input asp-for="YakitKm" class="form-control" />
+                <span asp-validation-for="YakitKm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -74,6 +109,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

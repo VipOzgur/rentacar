@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rentacar.Models;
 
-public partial class User
+public partial class User : BaseEntity
 {
-    public int Id { get; set; }
+    [NotMapped]
+    public IFormFile? ImageFile { get; set; }
 
     public string Ad { get; set; } = null!;
 
     public string Soyad { get; set; } = null!;
 
     public string? Telefon { get; set; }
+
+    public string? Profil{ get; set; }
 
     public string? Adres { get; set; }
 
@@ -23,9 +27,13 @@ public partial class User
 
     public byte[]? IsActive { get; set; }
 
-    public virtual ICollection<Blog> Blogs { get; set; } = new List<Blog>();
+    public string? Not { get; set; }
 
-    public virtual ICollection<Rezervasyon> Rezervasyons { get; set; } = new List<Rezervasyon>();
+    public virtual ICollection<Blog>? Blogs { get; set; } = new List<Blog>();
 
-    public virtual Role Role { get; set; } = null!;
+    public virtual ICollection<Rezervasyon>? Rezervasyons { get; set; } = new List<Rezervasyon>();
+
+    public virtual Role? Role { get; set; } = null!;
+
+    public virtual ICollection<Yorumlar>? Yorumlars { get; set; } = new List<Yorumlar>();
 }

@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
 <h1>Create</h1>
@@ -40,6 +40,29 @@
                 <label asp-for="Onay" class="control-label"></label>
                 <input asp-for="Onay" class="form-control" />
                 <span asp-validation-for="Onay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AlisLokasyonId" class="control-label"></label>
+                <select asp-for="AlisLokasyonId" class ="form-control" asp-items="ViewBag.AlisLokasyonId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeslimLokasyonId" class="control-label"></label>
+                <select asp-for="TeslimLokasyonId" class ="form-control" asp-items="ViewBag.TeslimLokasyonId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="KaskoId" class="control-label"></label>
+                <input asp-for="KaskoId" class="form-control" />
+                <span asp-validation-for="KaskoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fiyat" class="control-label"></label>
+                <input asp-for="Fiyat" class="form-control" />
+                <span asp-validation-for="Fiyat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Not" class="control-label"></label>
+                <input asp-for="Not" class="form-control" />
+                <span asp-validation-for="Not" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
