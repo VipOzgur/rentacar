@@ -1,73 +1,76 @@
 ﻿@model Rentacar.Models.User
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Kullanıcı Detayları";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Profil)
-        </dt>
-        <dd class = "col-sm-10">
-            <img src="@Html.DisplayFor(model => model.Profil)" alt="Profil Resmi" style="height:100px; width:100px;">
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Soyad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Soyad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefon)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefon)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Adres)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Adres)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Eposta)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Eposta)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Not)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Not)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Role.Id)
-        </dd>
-    </dl>
+<div class="details-card shadow-lg p-4 bg-white rounded">
+    <h4 class="section-title gradient-background  text-center mb-3 ">Kullanıcı Bilgileri</h4>
+    <hr class="mb-4" />
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Ad:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Ad)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Soyad:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Soyad)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Telefon:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Telefon)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Adres:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Adres)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">E-posta:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Eposta)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Şifre:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Password)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Aktiflik Durumu:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.IsActive)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Not:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Not)</span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
+                <strong class="details-title">Rol:</strong>
+                <span class="details-content">@Html.DisplayFor(model => model.Role.Id)</span>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="action-buttons text-center mt-4">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary me-3">
+        <i class="bi bi-pencil"></i> Düzenle
+    </a>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Geri Dön
+    </a>
 </div>

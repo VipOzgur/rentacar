@@ -1,43 +1,44 @@
 ﻿@model Rentacar.Models.Lokasyonlar
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Lokasyon Detayları";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="card shadow-lg p-4 rounded">
+    <div class="card-header bg-primary text-white text-center">
+        <h1 class="mb-0">Lokasyon Detayları</h1>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4 text-muted">Ad</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Ad)</dd>
 
-<div>
-    <h4>Lokasyonlar</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Kordinatlar)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Kordinatlar)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Durum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Durum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fiyat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fiyat)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+            <dt class="col-sm-4 text-muted">Koordinatlar</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Kordinatlar)</dd>
+
+            <dt class="col-sm-4 text-muted">Durum</dt>
+            <dd class="col-sm-8">
+                @if (Model.Durum.HasValue && Model.Durum.Value == 1)
+                {
+                    <span class="badge bg-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Pasif</span>
+                }
+            </dd>
+
+            <dt class="col-sm-4 text-muted">Fiyat</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Fiyat)</dd>
+        </dl>
+    </div>
+    <div class="card-footer text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary me-3">
+            <i class="bi bi-pencil"></i> Düzenle
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Geri Dön
+        </a>
+    </div>
 </div>
