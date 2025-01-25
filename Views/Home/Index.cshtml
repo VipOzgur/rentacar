@@ -1,26 +1,266 @@
 ﻿@model IEnumerable<Rentacar.Models.Araclar>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Araç Listesi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<section class="hero-section parallax position-relative">
+  <div class="container-fluid d-flex align-items-center justify-content-between hero-content">
+    <div class="hero-text text-white p-5">
+      <h1 class="display-4 fw-bold">Hayalinizdeki aracı bugün keşfedin!</h1>
+      <p class="fs-5">Hızlı, kolay ve uygun fiyatlı araç kiralama.</p>
+      <a href="/Araclar" class="btn btn-primary btn-lg rounded-pill mt-3">Keşfet</a>
+    </div>
+    <div class="hero-form bg-white p-4 rounded shadow custom-opacity position-relative">
+  <h5 class="text-center mb-4">Araç Kirala</h5>
+  <form>
+    <div class="mb-3">
+      <label for="pickup" class="form-label">Pick-up Address</label>
+      <input type="text" class="form-control" id="pickup" placeholder="Başlangıç adresi">
+    </div>
+    <div class="mb-3">
+      <label for="dropoff" class="form-label">Drop-off Address</label>
+      <input type="text" class="form-control" id="dropoff" placeholder="Teslim adresi">
+    </div>
+    <div class="mb-3">
+      <label for="date" class="form-label">Tarih</label>
+      <input type="date" class="form-control" id="date">
+    </div>
+    <div class="mb-3">
+      <label for="time" class="form-label">Saat</label>
+      <input type="time" class="form-control" id="time">
+    </div>
+    <button type="submit" class="btn btn-dark w-100 rounded-pill">Rezervasyon Yap</button>
+  </form>
+</div>
+  </div>
+</section>
 
-<div id="calendar"></div>
-<hr />
-<div class="timeline">
-  <div class="timeline-item">
-    <div class="timeline-icon bg-primary text-white">20</div>
-    <div class="timeline-content">
-      <h5>Rezervasyon Teslimi</h5>
-      <p>2025-01-20 tarihinde saat 14:00'te teslim edilecek.</p>
+
+
+<section class="car-cards-section parallax py-5">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold">Araçlarımız</h2>
+    <div class="row g-4">
+      <!-- Dinamik Kart -->
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="car-card shadow-sm">
+          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Mercedes-Benz S-Class</h5>
+            <p class="card-text">
+              <span>Kapasite: 5 Kişi</span><br>
+              <span>Vites: Otomatik</span><br>
+              <span>Günlük: 1200 TL</span>
+            </p>
+            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="car-card shadow-sm">
+          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Mercedes-Benz S-Class</h5>
+            <p class="card-text">
+              <span>Kapasite: 5 Kişi</span><br>
+              <span>Vites: Otomatik</span><br>
+              <span>Günlük: 1200 TL</span>
+            </p>
+            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="car-card shadow-sm">
+          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Mercedes-Benz S-Class</h5>
+            <p class="card-text">
+              <span>Kapasite: 5 Kişi</span><br>
+              <span>Vites: Otomatik</span><br>
+              <span>Günlük: 1200 TL</span>
+            </p>
+            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Başka bir kart -->
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="car-card shadow-sm">
+          <img src="/images/car2.jpeg" alt="Araç Resmi" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">BMW 5 Series</h5>
+            <p class="card-text">
+              <span>Kapasite: 4 Kişi</span><br>
+              <span>Vites: Otomatik</span><br>
+              <span>Günlük: 1000 TL</span>
+            </p>
+            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="timeline-item">
-    <div class="timeline-icon bg-warning text-white">23</div>
-    <div class="timeline-content">
-      <h5>Araç Bakımı</h5>
-      <p>2025-01-23 - 2025-01-25 tarihleri arasında bakım yapılacak.</p>
+</section>
+
+
+<section class="testimonials-section parallax py-5">
+  <div class="container">
+    <h2 class="text-center mb-4 fw-bold">Hizmetlerimiz</h2>
+    <div class="row g-4">
+      <div class="col-md-3 text-center">
+        <img src="/images/örnek6.jpg" alt="Havalimanı Transferi" class="img-fluid mb-3">
+        <h5 class="fw-bold">Havalimanı Transferi</h5>
+        <p class="">Konforlu ve zamanında ulaşım hizmeti.</p>
+      </div>
+      <div class="col-md-3 text-center">
+        <img src="/images/örnek1.jpg" alt="Şehirlerarası Yolculuklar" class="img-fluid mb-3">
+        <h5 class="fw-bold">Şehirlerarası Yolculuklar</h5>
+        <p class="">Uzun mesafeler için güvenli yolculuk.</p>
+      </div>
+      <div class="col-md-3 text-center">
+        <img src="/images/örnek2.jpg" alt="Özel Etkinlikler" class="img-fluid mb-3">
+        <h5 class="fw-bold">Özel Etkinlikler</h5>
+        <p class="">Lüks araçlarla özel günlerinize şıklık katın.</p>
+      </div>
+      <div class="col-md-3 text-center">
+        <img src="/images/örnek5.jpg" alt="Kurumsal Kiralama" class="img-fluid mb-3">
+        <h5 class="fw-bold">Kurumsal Kiralama</h5>
+        <p class="">İş toplantıları ve VIP hizmetler.</p>
+      </div>
     </div>
+  </div>
+</section>
+
+
+<section class="testimonials-section parallax py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4 fw-bold">Müşteri Yorumları</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-card p-3 shadow rounded">
+          <p class="">"Harika bir hizmet aldım! Araçlar çok temiz ve konforluydu."</p>
+          <h6 class="fw-bold text-end">- Ahmet Yılmaz</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card p-3 shadow rounded">
+          <p class="">"Havalimanı transferi için mükemmel bir tercih. Çok profesyoneller."</p>
+          <h6 class="fw-bold text-end">- Ayşe Kaya</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+  <div class="testimonial-card p-3 shadow rounded">
+    <p class="">"Araçlar çok temiz ve bakımlıydı. Yolculuğum sorunsuz geçti. Harika bir hizmet!"</p>
+    <h6 class="fw-bold text-end">- Mehmet Yılmaz</h6>
   </div>
 </div>
+
+<div class="col-md-4">
+  <div class="testimonial-card p-3 shadow rounded">
+    <p class="">"Rezervasyon süreci çok kolaydı. Güler yüzlü ve yardımcı bir ekip var."</p>
+    <h6 class="fw-bold text-end">- Elif Demir</h6>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="testimonial-card p-3 shadow rounded">
+    <p class="">"Fiyatlar gerçekten uygun ve araç seçenekleri oldukça geniş. Kesinlikle tavsiye ederim."</p>
+    <h6 class="fw-bold text-end">- Ahmet Çelik</h6>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="testimonial-card p-3 shadow rounded">
+    <p class="">"Havalimanında zamanında teslim aldım, her şey tam da istediğim gibiydi. Teşekkürler!"</p>
+    <h6 class="fw-bold text-end">- Fatma Şahin</h6>
+  </div>
+</div>
+      <div class="col-md-4">
+        <div class="testimonial-card p-3 shadow rounded">
+          <p class="">"Düğünümdeki araç hizmeti mükemmeldi. Çok teşekkür ederim!"</p>
+          <h6 class="fw-bold text-end">- Mehmet Demir</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="faq-section parallax py-5">
+  <div class="container">
+    <h2 class="text-center mb-4 fw-bold">Sıkça Sorulan Sorular</h2>
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            Araç kiralama koşulları nelerdir?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Araç kiralamak için geçerli bir ehliyet ve kimlik gereklidir.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Ödemeyi nasıl yapabilirim?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Ödemeyi nasıl yapabilirim?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Ödemeyi nasıl yapabilirim?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Ödemeyi nasıl yapabilirim?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

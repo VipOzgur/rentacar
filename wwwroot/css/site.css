@@ -1,31 +1,279 @@
-html {
-  font-size: 14px;
+/* Genel Stil */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
+/* Main container düzenlemeleri */
+.flex-fill {
+  flex: 1 0 auto; /* Sayfanın kalanını kaplar */
+}
+
+/* Sayfa içerik alanı */
+.content-area {
+  width: 100%; /* Sayfanın tamamını kaplar */
+  min-height: 100vh; /* Minimum yüksekliği tam ekran yapar */
+  padding: 20px; /* İsteğe bağlı iç boşluk */
+  box-sizing: border-box; /* Kenar dolguları genişlik hesaplamasına dahil edilir */
+}
+
+/* Arkaplan rengi ve stil */
+.content-area {
+  background-color: #f8f9fa; /* Arkaplan rengi (isteğe göre değiştir) */
+}
+
+/* Responsive için mobilde de düzgün görünüm */
+@media (max-width: 768px) {
+  .content-area {
+      padding: 10px; /* Mobilde iç boşlukları küçült */
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* Header stilleri */
+header {
+  border-bottom: 1px solid #dee2e6; /* Alt çizgi */
+  z-index: 1030; /* Üstte kalmasını sağlar */
 }
 
-html {
+.navbar {
+  background-color: #ffffff; /* Beyaz arkaplan */
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #007bff;
+}
+
+.navbar-brand:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.nav-link {
+  font-size: 1rem;
+  color: #343a40;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.nav-item .btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-item .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.nav-item .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.nav-item .btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.nav-item .btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Profil resmi */
+.profile-image {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border: 2px solid #007bff;
+}
+
+/* Responsive düzenleme */
+@media (max-width: 768px) {
+  .navbar-brand {
+      font-size: 1.25rem;
+  }
+
+  .nav-link {
+      font-size: 0.9rem;
+  }
+
+  .nav-item .btn {
+      font-size: 0.8rem;
+  }
+}
+.hero-section {
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
   position: relative;
-  min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.hero-text {
+  flex: 1;
+  color: #ffffff;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.hero-text h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+}
+
+/* Hero Form */
+.hero-form {
+  max-width: 400px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.85); /* Arka plan için opaklık */
+  backdrop-filter: blur(10px); /* Arka plan bulanıklığı */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0.9; /* Formun genel opaklığı */
+  transition: opacity 0.3s ease; /* Hover efekti için geçiş */
+}
+
+.hero-form:hover {
+  opacity: 1; /* Hover durumunda tam görünürlük */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto;
+    padding: 20px;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text, .hero-form {
+    width: 100%;
+  }
+
+  .hero-form {
+    margin-top: 20px;
+  }
+}
+
+
+/* Araç Kartları Bölümü */
+.car-cards-section {
+  background-color: #f8f9fa;
+}
+
+.car-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.car-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.car-card .card-body {
+  padding: 20px;
+  height: 300px;
+}
+
+.car-card .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.car-card .card-text {
+  font-size: 0.9rem;
+  color: #030101;
+  margin-bottom: 15px;
+}
+
+.car-card .btn {
+  font-size: 0.9rem;
+  font-weight: bold;
+ 
+}
+
+/* Genel Parallax Ayarları */
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.hero-section {
+  background-image: url('/images/hero-bg.jpg'); 
+}
+
+.car-cards-section {
+  background-image: url('/images/sec3.jpg'); 
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.services-section {
+  background-image: url('/images/örnek6.jpg'); 
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.testimonials-section {
+  background-image: url('/images/sec4.jpg'); 
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.faq-section {
+  background-image: url('/images/sorular.jpg'); 
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.text-muted{
+  color: #ffffff;
 }
