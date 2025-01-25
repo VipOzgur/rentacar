@@ -29,9 +29,9 @@ public partial class Rezervasyon : BaseEntity
 
     public virtual Lokasyonlar? AlisLokasyon { get; set; }
 
-    public virtual Araclar Arac { get; set; } = null!;
+    public virtual Araclar? Arac { get; set; } = null!;
 
     public virtual Lokasyonlar? TeslimLokasyon { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; } = null!;
 }

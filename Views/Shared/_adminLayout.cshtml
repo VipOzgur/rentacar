@@ -31,8 +31,9 @@
         <aside class="bg-dark text-white vh-100 position-fixed" id="sidebar">
             <div class="d-flex flex-column align-items-center py-4">
                 <img src="/images/onur-rentacar.png" alt="Logo" class="logo-rentacar mb-2">
-                <h4 id="user-name" class="text-center">@User.Identity.Name</h4>
-                <p class="text-center">Rent A Car</p>
+                <i class="bi bi-people fs-1"></i>
+                <h4  class="text-center"> Özkan Özgür </h4>
+                
             </div>
             <ul class="nav flex-column px-2">
                 <li class="nav-item">
@@ -56,8 +57,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/Resims/Index" class="nav-link text-white">
-                        <i class="bi bi-image"></i> Resimler
+                    <a href="/Extralars/Index" class="nav-link text-white">
+                        <i class="bi bi-image"></i> Ekstralar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Lokasyonlars/Index" class="nav-link text-white">
+                        <i class="bi bi-book"></i> Lokasyonlar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Kaskolars/Index" class="nav-link text-white">
+                        <i class="bi bi-book"></i> Kaskolar
                     </a>
                 </li>
                 <li class="nav-item">
@@ -70,6 +81,11 @@
                         <i class="bi bi-shield-lock"></i> Roller
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/Yorumlars/Index" class="nav-link text-white">
+                        <i class="bi bi-book"></i> Yorumlar
+                    </a>
+                </li>
             </ul>
         </aside>
         
@@ -78,10 +94,12 @@
         <div class="container-fluid background-img" id="main-content">
             <header class="main-content-üst text-white py-3">
                 <h1 class="text-center">Rent a Car</h1>
+                  
             </header>
             <main role="main" class="py-4 px-3">
                 @RenderBody()
             </main>
+            
         </div>
     </div>
 

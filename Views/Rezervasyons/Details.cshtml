@@ -1,85 +1,66 @@
 ﻿@model Rentacar.Models.Rezervasyon
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Rezervasyon Detayları";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Rezervasyon</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FinishDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FinishDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Durum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Durum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Onay)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Onay)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KaskoId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KaskoId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fiyat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fiyat)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Not)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Not)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AlisLokasyon)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AlisLokasyon.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Arac)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Arac.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TeslimLokasyon)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TeslimLokasyon.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="card shadow-lg p-4 rounded">
+   <h4 class="section-title text-center mb-3">Rezervasyon Detayları</h4>
+    <div class="card-body">
+        <div class="details-grid">
+            <div class="details-item">
+                <div class="details-label">Başlangıç Tarihi</div>
+                <div class="details-value">@Html.DisplayFor(model => model.StartDate)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Bitiş Tarihi</div>
+                <div class="details-value">@Html.DisplayFor(model => model.FinishDate)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Durum</div>
+                <div class="details-value">@Html.DisplayFor(model => model.Durum)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Onay</div>
+                <div class="details-value">@Html.DisplayFor(model => model.Onay)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Kasko</div>
+                <div class="details-value">@Html.DisplayFor(model => model.KaskoId)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Fiyat</div>
+                <div class="details-value">@Html.DisplayFor(model => model.Fiyat)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Not</div>
+                <div class="details-value">@Html.DisplayFor(model => model.Not)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Alış Lokasyonu</div>
+                <div class="details-value">@Html.DisplayFor(model => model.AlisLokasyon.Id)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Araç</div>
+                <div class="details-value">@Html.DisplayFor(model => model.Arac.Id)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Teslim Lokasyonu</div>
+                <div class="details-value">@Html.DisplayFor(model => model.TeslimLokasyon.Id)</div>
+            </div>
+            <div class="details-item">
+                <div class="details-label">Kullanıcı</div>
+                <div class="details-value">@Html.DisplayFor(model => model.User.Id)</div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-center gap-3">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning d-flex align-items-center">
+            <i class="bi bi-pencil-square me-2"></i> Düzenle
+        </a>
+        <a asp-action="Index" class="btn btn-secondary d-flex align-items-center">
+            <i class="bi bi-arrow-left me-2"></i> Geri Dön
+        </a>
+    </div>
 </div>

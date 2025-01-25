@@ -1,34 +1,30 @@
 ﻿@model Rentacar.Models.Role
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Rol Ekle";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>Role</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="card shadow-lg p-4 rounded">
+    <div class="card-header bg-primary text-white text-center">
+        <h1 class="mb-0">Yeni Rol Ekle</h1>
+    </div>
+    <div class="card-body">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Ad" class="control-label"></label>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Ad" class="form-label">Rol Adı</label>
                 <input asp-for="Ad" class="form-control" />
                 <span asp-validation-for="Ad" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg">
+                    <i class="bi bi-check-circle"></i> Kaydet
+                </button>
+                <a asp-action="Index" class="btn btn-secondary btn-lg">
+                    <i class="bi bi-arrow-left"></i> Geri Dön
+                </a>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

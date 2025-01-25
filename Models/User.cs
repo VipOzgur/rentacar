@@ -23,11 +23,11 @@ public partial class User : BaseEntity
 
     public string? Not { get; set; }
 
-    public virtual ICollection<Blog> Blogs { get; set; } = new List<Blog>();
+    public virtual ICollection<Blog>? Blogs { get; set; } = new List<Blog>();
 
-    public virtual ICollection<Rezervasyon> Rezervasyons { get; set; } = new List<Rezervasyon>();
+    public virtual ICollection<Rezervasyon>? Rezervasyons { get; set; } = new List<Rezervasyon>();
 
-    public virtual Role Role { get; set; } = null!;
+    public virtual Role? Role { get; set; } = null!;
 
-    public virtual ICollection<Yorumlar> Yorumlars { get; set; } = new List<Yorumlar>();
+    public virtual ICollection<Yorumlar>? Yorumlars { get; set; } = new List<Yorumlar>();
 }

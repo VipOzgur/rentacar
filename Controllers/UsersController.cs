@@ -47,7 +47,7 @@ namespace Rentacar.Controllers
         // GET: Users/Create
         public IActionResult Create()
         {
-            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Id");
+            ViewData["RoleId"] = new SelectList(_context.Roles, "Id", "Ad");
             return View();
         }
 
