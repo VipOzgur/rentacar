@@ -1,60 +1,69 @@
 ﻿@model IEnumerable<Rentacar.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kullanıcılar";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Profil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Soyad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefon)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Profil)" alt="Profil Resmi" style="height:100px; width:100px;">
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Soyad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <h1 class="page-header">Kullanıcılar</h1>
+
+    <div class="card-body">
+        <p class="text-start">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Yeni Kullanıcı Ekle
+            </a>
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Ad)</th>
+                        <th>@Html.DisplayNameFor(model => model.Soyad)</th>
+                        <th>@Html.DisplayNameFor(model => model.Telefon)</th>
+                        <th>@Html.DisplayNameFor(model => model.Adres)</th>
+                        <th>@Html.DisplayNameFor(model => model.Eposta)</th>
+                        <th>@Html.DisplayNameFor(model => model.Password)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        <th>@Html.DisplayNameFor(model => model.Not)</th>
+                        <th>@Html.DisplayNameFor(model => model.Role)</th>
+                        <th>Aksiyonlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Ad)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Soyad)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Telefon)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Adres)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Eposta)</td>
+                            <td>********</td> <!-- Parola gizlendi -->
+                            <td>
+                                @if (item.IsActive != null && item.IsActive.Length > 0)
+                                            {
+                                                <span>Aktif</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Pasif</span>
+                                            }
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Not)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Role.Ad)</td>
+                            <td data-label="Aksiyonlar">
+                        <div class="action-buttons">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Düzenle</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detaylar</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Sil</a>
+                        </div>
+                    </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

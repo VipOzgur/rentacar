@@ -1,78 +1,96 @@
 ﻿@model Rentacar.Models.User
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Yeni Kullanıcı Ekle";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" type="file" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+<div class="card shadow-lg p-4 rounded">
+    <h4 class="section-title text-center mb-3">Yeni Kullanıcı Ekle</h4>
+    <div class="card-body">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Ad" class="form-label">Ad</label>
+                        <input asp-for="Ad" class="form-control" />
+                        <span asp-validation-for="Ad" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Soyad" class="form-label">Soyad</label>
+                        <input asp-for="Soyad" class="form-control" />
+                        <span asp-validation-for="Soyad" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Telefon" class="form-label">Telefon</label>
+                        <input asp-for="Telefon" class="form-control" />
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Adres" class="form-label">Adres</label>
+                        <input asp-for="Adres" class="form-control" />
+                        <span asp-validation-for="Adres" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Eposta" class="form-label">E-Posta</label>
+                        <input asp-for="Eposta" type="email" class="form-control" />
+                        <span asp-validation-for="Eposta" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Password" class="form-label">Şifre</label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RoleId" class="form-label">Rol</label>
+                        <select asp-for="RoleId" class="form-control" asp-items="ViewBag.RoleId"></select>
+                        <span asp-validation-for="RoleId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsActive" class="form-label">Aktiflik Durumu</label>
+                        <div class="custom-select">
+                            <button type="button" class="btn-yes" onclick="setActive(true)">Evet</button>
+                            <button type="button" class="btn-no" onclick="setActive(false)">Hayır</button>
+                        </div>
+                        <input type="hidden" asp-for="IsActive" id="isActiveInput" />
+                        <span asp-validation-for="IsActive" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Not" class="form-label">Not</label>
+                        <textarea asp-for="Not" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Not" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Ad" class="control-label"></label>
-                <input asp-for="Ad" class="form-control" />
-                <span asp-validation-for="Ad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Soyad" class="control-label"></label>
-                <input asp-for="Soyad" class="form-control" />
-                <span asp-validation-for="Soyad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefon" class="control-label"></label>
-                <input asp-for="Telefon" class="form-control" />
-                <span asp-validation-for="Telefon" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Adres" class="control-label"></label>
-                <input asp-for="Adres" class="form-control" />
-                <span asp-validation-for="Adres" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Eposta" class="control-label"></label>
-                <input asp-for="Eposta" class="form-control" />
-                <span asp-validation-for="Eposta" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoleId" class="control-label"></label>
-                <select asp-for="RoleId" class ="form-control" asp-items="ViewBag.RoleId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsActive" class="control-label"></label>
-                <input asp-for="IsActive" class="form-control" />
-                <span asp-validation-for="IsActive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Not" class="control-label"></label>
-                <input asp-for="Not" class="form-control" />
-                <span asp-validation-for="Not" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success btn-lg me-3">
+                    <i class="bi bi-check-circle"></i> Kaydet
+                </button>
+                <a asp-action="Index" class="btn btn-secondary btn-lg">
+                    <i class="bi bi-arrow-left"></i> Geri Dön
+                </a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function setActive(value) {
+            document.getElementById("isActiveInput").value = value;
+            const yesButton = document.querySelector(".btn-yes");
+            const noButton = document.querySelector(".btn-no");
+
+            if (value) {
+                yesButton.classList.add("active");
+                noButton.classList.remove("active");
+            } else {
+                noButton.classList.add("active");
+                yesButton.classList.remove("active");
+            }
+        }
+    </script>
 }

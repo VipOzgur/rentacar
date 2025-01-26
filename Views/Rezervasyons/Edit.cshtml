@@ -1,85 +1,88 @@
 ﻿@model Rentacar.Models.Rezervasyon
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Rezervasyon Düzenle";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>Rezervasyon</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="card shadow-lg p-4 rounded">
+   <h4 class="section-title text-center mb-3">Rezervasyon Düzenle</h4>
+    <div class="card-body">
+        <form asp-action="Edit" class="form-container">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="AracId" class="control-label"></label>
-                <select asp-for="AracId" class="form-control" asp-items="ViewBag.AracId"></select>
-                <span asp-validation-for="AracId" class="text-danger"></span>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <select asp-for="AracId" class="form-select" asp-items="ViewBag.AracId"></select>
+                        <label asp-for="AracId">Araç</label>
+                        <span asp-validation-for="AracId" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select asp-for="UserId" class="form-select" asp-items="ViewBag.UserId"></select>
+                        <label asp-for="UserId">Kullanıcı</label>
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="StartDate" type="date" class="form-control" />
+                        <label asp-for="StartDate">Başlangıç Tarihi</label>
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="FinishDate" type="date" class="form-control" />
+                        <label asp-for="FinishDate">Bitiş Tarihi</label>
+                        <span asp-validation-for="FinishDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Durum" class="form-control" />
+                        <label asp-for="Durum">Durum</label>
+                        <span asp-validation-for="Durum" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Onay" class="form-control" />
+                        <label asp-for="Onay">Onay</label>
+                        <span asp-validation-for="Onay" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <select asp-for="AlisLokasyonId" class="form-select" asp-items="ViewBag.AlisLokasyonId"></select>
+                        <label asp-for="AlisLokasyonId">Alış Lokasyonu</label>
+                        <span asp-validation-for="AlisLokasyonId" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select asp-for="TeslimLokasyonId" class="form-select" asp-items="ViewBag.TeslimLokasyonId"></select>
+                        <label asp-for="TeslimLokasyonId">Teslim Lokasyonu</label>
+                        <span asp-validation-for="TeslimLokasyonId" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="KaskoId" class="form-control" />
+                        <label asp-for="KaskoId">Kasko</label>
+                        <span asp-validation-for="KaskoId" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Fiyat" class="form-control" />
+                        <label asp-for="Fiyat">Fiyat</label>
+                        <span asp-validation-for="Fiyat" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea asp-for="Not" class="form-control" style="height: 100px;"></textarea>
+                        <label asp-for="Not">Not</label>
+                        <span asp-validation-for="Not" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FinishDate" class="control-label"></label>
-                <input asp-for="FinishDate" class="form-control" />
-                <span asp-validation-for="FinishDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Durum" class="control-label"></label>
-                <input asp-for="Durum" class="form-control" />
-                <span asp-validation-for="Durum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Onay" class="control-label"></label>
-                <input asp-for="Onay" class="form-control" />
-                <span asp-validation-for="Onay" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AlisLokasyonId" class="control-label"></label>
-                <select asp-for="AlisLokasyonId" class="form-control" asp-items="ViewBag.AlisLokasyonId"></select>
-                <span asp-validation-for="AlisLokasyonId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TeslimLokasyonId" class="control-label"></label>
-                <select asp-for="TeslimLokasyonId" class="form-control" asp-items="ViewBag.TeslimLokasyonId"></select>
-                <span asp-validation-for="TeslimLokasyonId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="KaskoId" class="control-label"></label>
-                <input asp-for="KaskoId" class="form-control" />
-                <span asp-validation-for="KaskoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fiyat" class="control-label"></label>
-                <input asp-for="Fiyat" class="form-control" />
-                <span asp-validation-for="Fiyat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Not" class="control-label"></label>
-                <input asp-for="Not" class="form-control" />
-                <span asp-validation-for="Not" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <div class="action-buttons text-center mt-4">
+                <button type="submit" class="btn btn-success me-3">
+                    <i class="bi bi-check-circle"></i> Kaydet
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Geri Dön
+                </a>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

@@ -16,88 +16,108 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet" />
+  
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="/images/onur-rentacar.png" alt="Onur Rent a Car" class="loader-image">
+        <div class="loading-text">Yükleniyor...</div>
+    </div>
+
     <!-- Hamburger Menu -->
-    <button class="btn  d-md-none position-fixed top-0 start-0 m-3 hamburger-buton" id="hamburger-menu">
-        <i class="bi bi-list" style="font-size: 1.5rem ; color:white;"></i>
-    </button>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
     <!-- Sidebar -->
-    <aside class="bg-dark text-white vh-100 position-fixed" id="sidebar">
-        <div class="d-flex flex-column align-items-center py-4">
-            <img src="/images/onur-rentacar.png" alt="Logo" class="logo-rentacar mb-2">
-            <a asp-action="Details" asp-controller="Users" asp-route-id="@userId" style=" text-decoration: none; color: inherit;">
-            <img src="@userProfil" style="height:20px; width:auto;" alt="Admin Profil" class="">
-            <h4 id="user-name" class="text-center">@userName</h4>
-            <h4 id="user-name" class="text-center"> | @userRole</h4>
-            </a>    
-            <p class="text-center">Rent A Car</p>
-        </div>
-        <ul class="nav flex-column px-2">
-            <li class="nav-item">
-                <a href="/Login/Login" class="nav-link text-white" style="color:greenyellow;">
-                    <i class="bi bi-speedometer2"></i> Giriş
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Login/Login" class="nav-link text-white" style="color:red;">
-                    <i class="bi bi-speedometer2"></i> Çıkış
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Admin/Index" class="nav-link text-white">
-                    <i class="bi bi-speedometer2"></i> Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Araclars/Index" class="nav-link text-white">
-                    <i class="bi bi-car-front"></i> Araç Yönetimi
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Rezervasyons/Index" class="nav-link text-white">
-                    <i class="bi bi-calendar-check"></i> Rezervasyonlar
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Users/Index" class="nav-link text-white">
-                    <i class="bi bi-people"></i> Kullanıcılar
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Resims/Index" class="nav-link text-white">
-                    <i class="bi bi-image"></i> Resimler
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Blogs/Index" class="nav-link text-white">
-                    <i class="bi bi-book"></i> Blog
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Roles/Index" class="nav-link text-white">
-                    <i class="bi bi-shield-lock"></i> Roller
-                </a>
-            </li>
-        </ul>
-    </aside>
+    <div class="wrapper">
+        <aside class="bg-dark text-white vh-100 position-fixed" id="sidebar">
+            <div class="d-flex flex-column align-items-center py-4">
+                <img src="/images/onur-rentacar.png" alt="Logo" class="logo-rentacar mb-2">
+                <img src="@userProfil" alt="User Profil" class="rounded-circle mb-2" style="height: 100px; width: 100px;">
+                <i class="bi bi-people fs-1"></i>
+                <h4  class="text-center"> @userName  @userRole</h4>
 
-    <!-- Main Content -->
-    <div class="container-fluid" id="main-content">
-        <header class="main-content-üst text-white py-3">
-            <h1 class="text-center">Rent a Car </h1>
-        </header>
-        <main role="main" class="py-4 px-3">
-            @RenderBody()
-        </main>
+                
+            </div>
+            <ul class="nav flex-column px-2">
+                <li class="nav-item">
+                    <a href="/Home/Index" class="nav-link text-white">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Araclars/Index" class="nav-link text-white">
+                        <i class="bi bi-car-front"></i> Araç Yönetimi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Rezervasyons/Index" class="nav-link text-white">
+                        <i class="bi bi-calendar-check"></i> Rezervasyonlar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Users/Index" class="nav-link text-white">
+                        <i class="bi bi-people"></i> Kullanıcılar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Extralars/Index" class="nav-link text-white">
+                        <i class="bi bi-image"></i> Ekstralar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Lokasyonlars/Index" class="nav-link text-white">
+                        <i class="bi bi-book"></i> Lokasyonlar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Kaskolars/Index" class="nav-link text-white">
+                        <i class="bi bi-book"></i> Kaskolar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Blogs/Index" class="nav-link text-white">
+                        <i class="bi bi-book"></i> Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Roles/Index" class="nav-link text-white">
+                        <i class="bi bi-shield-lock"></i> Roller
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Yorumlars/Index" class="nav-link text-white">
+                        <i class="bi bi-book"></i> Yorumlar
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+
+        <!-- Main Content -->
+        <div class="container-fluid background-img" id="main-content">
+            <header class="main-content-üst text-white py-3">
+                <h1 class="text-center">Rent a Car</h1>
+                  
+            </header>
+            <main role="main" class="py-4 px-3">
+                @RenderBody()
+            </main>
+            
+        </div>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/admin.js" asp-append-version="true"></script>
-     @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
