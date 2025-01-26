@@ -5,17 +5,17 @@ body {
   color: #343a40;
 }
 
-/* Main container düzenlemeleri */
+/* Main container d�zenlemeleri */
 .flex-fill {
-  flex: 1 0 auto; /* Sayfanın kalanını kaplar */
+  flex: 1 0 auto; /* Sayfan�n kalan�n� kaplar */
 }
 
-/* Sayfa içerik alanı */
+/* Sayfa i�erik alan� */
 .content-area {
-  width: 100%; /* Sayfanın tamamını kaplar */
-  min-height: 100vh; /* Minimum yüksekliği tam ekran yapar */
-  padding: 20px; /* İsteğe bağlı iç boşluk */
-  box-sizing: border-box; /* Kenar dolguları genişlik hesaplamasına dahil edilir */
+  width: 100%; /* Sayfan�n tamam�n� kaplar */
+  min-height: 100vh; /* Minimum y�ksekli�i tam ekran yapar */
+  padding: 20px; /* �ste�e ba�l� i� bo�luk */
+  box-sizing: border-box; /* Kenar dolgular� geni�lik hesaplamas�na dahil edilir */
 }
 
 /* Arkaplan rengi ve stil */
