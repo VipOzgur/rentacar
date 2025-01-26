@@ -9,9 +9,9 @@ public partial class Rezervasyon : BaseEntity
 
     public int UserId { get; set; }
 
-    public string? StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
 
-    public string? FinishDate { get; set; }
+    public DateTime? FinishDate { get; set; }
 
     public int? Durum { get; set; }
 

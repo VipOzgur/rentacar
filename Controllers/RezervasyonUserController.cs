@@ -31,6 +31,22 @@ namespace Rentacar.Controllers
             return View(await _context.Araclars.ToListAsync());
         }
 
+        [HttpGet] //search get json veri
+        public IActionResult SearchPost(DateTime startDate, DateTime finishDate)
+        {
+                var availableCars = _context.Araclars
+                    .Where(a => !a.Rezervasyons.Any(r =>
+                        (r.StartDate <= finishDate) && (r.FinishDate >= startDate))).ToList();
+
+                return Json(availableCars);
+        }
+        [HttpGet] //search get json veri
+        public IActionResult SearchGet()
+        {
+            var lokasyon = _context.Lokasyonlars.Select(x => new { Id = x.Id, Name = x.Ad, Price = x.Fiyat });
+                return Json(lokasyon);
+        }
+
         // GET: RezervasyonUser/Details/5
         public async Task<IActionResult> Details(int? id)
         {

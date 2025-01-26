@@ -1,0 +1,54 @@
+﻿
+<form asp-action="SearchPost" asp-controller="RezervasyonUser">
+    <div class="form-group">
+        <input class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="date" />
+    </div>
+
+    <div class="form-group">
+        <select id="alis-lokasyon" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <select id="teslim-lokasyon" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+
+<script>
+    // Verileri Fetch API ile al ve select kutularına doldur
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('/RezervasyonUser/SearchGet') // Controller ve action URL'sini değiştirin
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Veri alınamadı!');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Alış ve Teslim Lokasyonları için select kutularını bul
+                const alisLokasyonSelect = document.getElementById('alis-lokasyon');
+                const teslimLokasyonSelect = document.getElementById('teslim-lokasyon');
+
+                // Her bir JSON nesnesini select kutularına ekle
+                data.forEach(lokasyon => {
+                    const option1 = document.createElement('option');
+                    option1.value = lokasyon.id; // Lokasyon ID
+                    option1.textContent = lokasyon.ad; // Lokasyon Ad
+
+                    const option2 = option1.cloneNode(true); // Teslim lokasyonu için aynı seçeneği kullan
+
+                    alisLokasyonSelect.appendChild(option1);
+                    teslimLokasyonSelect.appendChild(option2);
+                });
+            })
+            .catch(error => {
+                console.error('Hata:', error);
+            });
+    });
+</script>
+
+
