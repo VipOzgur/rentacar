@@ -14,25 +14,8 @@
     </div>
     <div class="hero-form bg-white p-4 rounded shadow custom-opacity position-relative">
   <h5 class="text-center mb-4">Araç Kirala</h5>
-  <form>
-    <div class="mb-3">
-      <label for="pickup" class="form-label">Pick-up Address</label>
-      <input type="text" class="form-control" id="pickup" placeholder="Başlangıç adresi">
-    </div>
-    <div class="mb-3">
-      <label for="dropoff" class="form-label">Drop-off Address</label>
-      <input type="text" class="form-control" id="dropoff" placeholder="Teslim adresi">
-    </div>
-    <div class="mb-3">
-      <label for="date" class="form-label">Tarih</label>
-      <input type="date" class="form-control" id="date">
-    </div>
-    <div class="mb-3">
-      <label for="time" class="form-label">Saat</label>
-      <input type="time" class="form-control" id="time">
-    </div>
-    <button type="submit" class="btn btn-dark w-100 rounded-pill">Rezervasyon Yap</button>
-  </form>
+  @await Html.PartialAsync("_Search",null)
+
 </div>
   </div>
 </section>
@@ -264,3 +247,5 @@
     </div>
   </div>
 </section>
+
+

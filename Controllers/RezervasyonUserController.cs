@@ -31,19 +31,25 @@ namespace Rentacar.Controllers
             return View(await _context.Araclars.ToListAsync());
         }
 
-        [HttpGet] //search get json veri
-        public IActionResult SearchPost(DateTime startDate, DateTime finishDate)
+        [HttpPost] //search get json veri
+        public IActionResult SearchPost([FromForm] Search search)
         {
-                var availableCars = _context.Araclars
+            if (search.StartDate == null || search.FinishDate == null)
+            {
+                TempData["mesaj"] = "Tarih aralığı geçerli değil.";
+                var referer = Request.Headers["Referer"].ToString();
+                return Redirect(referer);
+            }
+            var uygunAraclar = _context.Araclars
                     .Where(a => !a.Rezervasyons.Any(r =>
-                        (r.StartDate <= finishDate) && (r.FinishDate >= startDate))).ToList();
+                        (r.StartDate <= search.FinishDate) && (r.FinishDate >= search.StartDate))).ToList();
 
-                return Json(availableCars);
+                return View("Araclar", uygunAraclar);
         }
         [HttpGet] //search get json veri
         public IActionResult SearchGet()
         {
-            var lokasyon = _context.Lokasyonlars.Select(x => new { Id = x.Id, Name = x.Ad, Price = x.Fiyat });
+            var lokasyon = _context.Lokasyonlars.Select(x => new {id = x.Id, ad = x.Ad, fiyat = x.Fiyat });
                 return Json(lokasyon);
         }
 
@@ -84,7 +90,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AracId,UserId,StartDate,FinishDate,Durum,Onay,AlisLokasyonId,TeslimLokasyonId,KaskoId,Fiyat,Not,Id,CreateDate,UpdateDate")] Rezervasyon rezervasyon)
+        public async Task<IActionResult> Create([FromForm] Rezervasyon rezervasyon)
         {
             if (ModelState.IsValid)
             {

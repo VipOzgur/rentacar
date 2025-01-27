@@ -4,7 +4,7 @@
     ViewData["Title"] = "Araclar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@await Html.PartialAsync("_Search", null)
 <h1>Araclar</h1>
 
 <p>
@@ -14,10 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Aciklama)
+                @Html.DisplayNameFor(model => model.Profil)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Plaka)
+                @Html.DisplayNameFor(model => model.Aciklama)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Marka)
@@ -26,22 +26,10 @@
                 @Html.DisplayNameFor(model => model.Model)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Profil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Yakit)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Vites)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Fiyat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Durum)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Depozito)
@@ -50,22 +38,7 @@
                 @Html.DisplayNameFor(model => model.Km)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GoruntulemeSayisi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KiralanmaSayisi)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.MotorGucu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.YakitKm)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdateDate)
             </th>
             <th></th>
         </tr>
@@ -74,10 +47,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Aciklama)
+                @Html.DisplayFor(modelItem => item.Profil)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Plaka)
+                @Html.DisplayFor(modelItem => item.Aciklama)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Marka)
@@ -86,22 +59,10 @@
                 @Html.DisplayFor(modelItem => item.Model)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profil)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yakit)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Vites)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Fiyat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Durum)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Depozito)
@@ -110,27 +71,10 @@
                 @Html.DisplayFor(modelItem => item.Km)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GoruntulemeSayisi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KiralanmaSayisi)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.MotorGucu)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.YakitKm)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Kirala</a>
             </td>
         </tr>
 }

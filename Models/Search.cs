@@ -1,6 +1,6 @@
 ﻿namespace Rentacar.Models
 {
-    public abstract class Search
+    public  class Search
     {
 
         public int? AlisLokasyonId { get; set; }

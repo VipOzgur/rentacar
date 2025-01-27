@@ -132,7 +132,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Aciklama,Plaka,Marka,Model,IsActive,Profil,Yakit,Vites,Fiyat,Durum,Depozito,Km,GoruntulemeSayisi,KiralanmaSayisi,MotorGucu,YakitKm")] Araclar araclar)
+        public async Task<IActionResult> Edit(int id, [FromForm] Araclar araclar)
         {
             if (id != araclar.Id)
             {

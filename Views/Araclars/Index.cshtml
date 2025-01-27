@@ -13,6 +13,7 @@
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
+                <th>@Html.DisplayNameFor(model => model.Profil)</th>
                 <th>@Html.DisplayNameFor(model => model.Aciklama)</th>
                 <th>@Html.DisplayNameFor(model => model.Plaka)</th>
                 <th>@Html.DisplayNameFor(model => model.Marka)</th>
@@ -26,6 +27,7 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td data-label="Açıklama"><img src="@Html.DisplayFor(modelItem => item.Profil)" alt="Profil Resmi" style="height:100px; width:100px;"></td>
             <td data-label="Açıklama">@Html.DisplayFor(modelItem => item.Aciklama)</td>
             <td data-label="Plaka">@Html.DisplayFor(modelItem => item.Plaka)</td>
             <td data-label="Marka">@Html.DisplayFor(modelItem => item.Marka)</td>

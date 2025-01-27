@@ -7,7 +7,7 @@
     var userProfil = (isAuthenticated) ? User.FindFirst(ClaimTypes.UserData).Value : "/imagess/default.png";
 } 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="utf-8" />
@@ -93,6 +93,15 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @if (!string.IsNullOrEmpty(TempData["mesaj"]?.ToString()))
+    {
+        <text>
+            <script>
+                alert('@TempData["mesaj"]?.ToString()');
+            </script>
+        </text>
+        TempData["mesaj"] = null; // hata'yı sıfırla
+    }
 </body>
 
 </html>

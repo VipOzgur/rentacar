@@ -10,11 +10,26 @@
         <h4 class="section-title text-center mb-3">Yeni Araç Ekle</h4>
     
     <div class="card-body">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
             <div class="row g-3">
                 <div class="col-md-6">
+                    @* <div class="form-group">
+                        <label asp-for="Profil" class="form-label">Profil</label>
+                        <input asp-for="Profil" class="form-control" />
+                        <span asp-validation-for="Profil" class="text-danger"></span>
+                        </div> *@
+                    <div class="form-group">
+                        <label asp-for="ImageFile" class="form-label"></label>
+                        <input asp-for="ImageFile" type="file" class="form-control" />
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageFiles" class="form-label"></label>
+                        <input asp-for="ImageFiles" type="file" multiple class="form-control" />
+                        <span asp-validation-for="ImageFiles" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <label asp-for="Aciklama" class="form-label">Açıklama</label>
                         <input asp-for="Aciklama" class="form-control" />
@@ -53,11 +68,6 @@
                         </div>
                         <input type="hidden" asp-for="IsActive" id="isActiveInput" />
                         <span asp-validation-for="IsActive" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Profil" class="form-label">Profil</label>
-                        <input asp-for="Profil" class="form-control" />
-                        <span asp-validation-for="Profil" class="text-danger"></span>
                     </div>
                 </div>
 

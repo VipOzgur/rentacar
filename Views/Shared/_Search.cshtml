@@ -1,4 +1,29 @@
-﻿
+﻿<form asp-action="SearchPost" asp-controller="RezervasyonUser">
+    <div class="mb-3">
+        <label for="pickup" class="form-label">Başlangıç Adres</label>
+        <select id="alis-lokasyon" name="AlisLokasyonId" class="form-control"></select>
+        @* <input type="text" class="form-control" id="pickup" placeholder="Başlangıç adresi"> *@
+    </div>
+    <div class="mb-3">
+        <label for="dropoff" class="form-label">Teslim Adres</label>
+        <select id="teslim-lokasyon" class="form-control" name="TeslimLokasyonId"></select>
+        @* <input type="text" class="form-control" id="dropoff" placeholder="Teslim adresi"> *@
+    </div>
+    <div class="mb-3">
+        <label for="date" class="form-label">Alış Tarihi</label>
+        <input type="date" class="form-control" name="StartDate" id="date">
+    </div>
+    <div class="mb-3">
+        <label for="date" class="form-label">Teslim Tarihi</label>
+        <input type="date" class="form-control" id="date" name="FinishDate">
+    </div>
+    <div class="mb-3">
+        <label for="time" class="form-label">Saat</label>
+        <input type="time" class="form-control" id="time">
+    </div>
+    <button type="submit" value="Search" class="btn btn-dark w-100 rounded-pill">Rezervasyon Ara</button>
+</form>
+@* 
 <form asp-action="SearchPost" asp-controller="RezervasyonUser">
     <div class="form-group">
         <input class="form-control" type="date" />
@@ -17,7 +42,7 @@
         <input type="submit" value="Search" class="btn btn-primary" />
     </div>
 </form>
-
+ *@
 <script>
     // Verileri Fetch API ile al ve select kutularına doldur
     document.addEventListener("DOMContentLoaded", function () {
@@ -37,7 +62,7 @@
                 data.forEach(lokasyon => {
                     const option1 = document.createElement('option');
                     option1.value = lokasyon.id; // Lokasyon ID
-                    option1.textContent = lokasyon.ad; // Lokasyon Ad
+                    option1.textContent = lokasyon.ad +"        +" + lokasyon.fiyat; // Lokasyon Ad
 
                     const option2 = option1.cloneNode(true); // Teslim lokasyonu için aynı seçeneği kullan
 

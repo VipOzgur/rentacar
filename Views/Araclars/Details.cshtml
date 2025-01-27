@@ -13,6 +13,21 @@
     <div class="row">
         <div class="col-md-6 mb-3">
             <div class="details-item">
+                <strong class="details-title">Resimler:</strong>
+                <span class="details-content">
+                    <img src="@Html.DisplayFor(model => model.Profil)" alt="Profil Resmi" style="height:100px; width:100px;">
+                    @{
+                        foreach (var item in Model.Resims)
+                        {
+                            <img src="@item.Url" alt="@item.AltG" style="height:100px; width:100px;">
+
+                        }
+                    }
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="details-item">
                 <strong class="details-title">Açıklama:</strong>
                 <span class="details-content">@Html.DisplayFor(model => model.Aciklama)</span>
             </div>

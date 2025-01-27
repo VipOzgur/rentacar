@@ -45,12 +45,13 @@
 </body>
 
 </html>
-    @if (TempData["mesaj"] != null)
-    {
-        <text>
-            <script>
-                alert('@TempData["mesaj"].ToString()');
-            </script>
-        </text>
-        TempData["mesaj"] = null;
-    }
+   
+@if (!string.IsNullOrEmpty(TempData["hata"]?.ToString()))
+{
+    <text>
+        <script>
+            alert('@TempData["hata"]?.ToString()');
+        </script>
+    </text>
+    TempData["hata"] = null; // hata'yı sıfırla
+}
