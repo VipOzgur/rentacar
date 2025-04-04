@@ -1,25 +1,43 @@
-﻿<form asp-action="SearchPost" asp-controller="RezervasyonUser">
-    <div class="mb-3">
+﻿@{
+    string today = DateTime.Today.AddDays(1).ToString("yyyy-MM-dd");
+string tomorrow = DateTime.Today.AddDays(2).ToString("yyyy-MM-dd");
+
+// ViewBag.search değişkenini Search türüne dönüştür
+Search search = ViewBag.search as Search;
+
+if (search?.StartDate.HasValue == true && search?.FinishDate.HasValue == true)
+{
+    today = search.StartDate.Value.ToString("yyyy-MM-dd");
+    tomorrow = search.FinishDate.Value.ToString("yyyy-MM-dd");
+}
+
+}
+<form asp-action="SearchPost" asp-controller="RezervasyonUser">
+    @* <div class="mb-3">
         <label for="pickup" class="form-label">Başlangıç Adres</label>
         <select id="alis-lokasyon" name="AlisLokasyonId" class="form-control"></select>
-        @* <input type="text" class="form-control" id="pickup" placeholder="Başlangıç adresi"> *@
+        // <input type="text" class="form-control" id="pickup" placeholder="Başlangıç adresi"> 
     </div>
     <div class="mb-3">
         <label for="dropoff" class="form-label">Teslim Adres</label>
         <select id="teslim-lokasyon" class="form-control" name="TeslimLokasyonId"></select>
-        @* <input type="text" class="form-control" id="dropoff" placeholder="Teslim adresi"> *@
-    </div>
+         <input type="text" class="form-control" id="dropoff" placeholder="Teslim adresi"> 
+    </div> *@
     <div class="mb-3">
         <label for="date" class="form-label">Alış Tarihi</label>
-        <input type="date" class="form-control" name="StartDate" id="date">
+        <input type="date" min="@today" class="form-control" value="@today" name="StartDate" id="date">
     </div>
     <div class="mb-3">
         <label for="date" class="form-label">Teslim Tarihi</label>
-        <input type="date" class="form-control" id="date" name="FinishDate">
+        <input type="date" min="@tomorrow" class="form-control" id="date" value="@tomorrow" name="FinishDate">
     </div>
     <div class="mb-3">
-        <label for="time" class="form-label">Saat</label>
-        <input type="time" class="form-control" id="time">
+        <label for="time" class="form-label">Alış Saat</label>
+        <input type="time" value="10:00" class="form-control" id="Stime" name="StartTime">
+    </div>
+    <div class="mb-3">
+        <label for="time" class="form-label">Teslim Saat</label>
+        <input type="time" value="10:00" class="form-control" id="Ftime" name="FinishTime">
     </div>
     <button type="submit" value="Search" class="btn btn-dark w-100 rounded-pill">Rezervasyon Ara</button>
 </form>

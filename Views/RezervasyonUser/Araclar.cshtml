@@ -6,7 +6,19 @@
 }
 @await Html.PartialAsync("_Search", null)
 <h1>Araclar</h1>
+@{
+    DateTime today1 = DateTime.Today.AddDays(1);
+    DateTime tomorrow1 = DateTime.Today.AddDays(2);
 
+    // ViewBag.search değişkenini Search türüne dönüştür
+    Search search = ViewBag.search as Search;
+
+    if (search?.StartDate.HasValue == true && search?.FinishDate.HasValue == true)
+    {
+        today1 = search.StartDate.Value;
+        tomorrow1 = search.FinishDate.Value;
+    }
+}
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -74,7 +86,7 @@
                 @Html.DisplayFor(modelItem => item.MotorGucu)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Kirala</a>
+                    <a asp-action="Create" asp-route-aracid="@item.Id" asp-route-today="@today1.ToString("yyyy-MM-dd")" asp-route-tomorrow="@tomorrow1.ToString("yyyy-MM-dd")">Kirala</a>
             </td>
         </tr>
 }

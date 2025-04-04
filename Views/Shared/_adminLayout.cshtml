@@ -1,7 +1,11 @@
 ﻿﻿@using System.Security.Claims;
 @{
-    bool isAuthenticated = User.Identity.IsAuthenticated;
-    var userName = (isAuthenticated)? User.FindFirst(ClaimTypes.NameIdentifier).Value :"Misafir";
+    bool isAuthenticated = false;
+    if (User.Identity!=null){
+
+        isAuthenticated = User.Identity.IsAuthenticated;
+    }
+    var userName = (isAuthenticated)? User.FindFirst(ClaimTypes.Name).Value :"Misafir";
     var userId = (isAuthenticated) ? User.FindFirst(ClaimTypes.Sid).Value:"-1";
     var userRole = (isAuthenticated) ? User.FindFirst(ClaimTypes.Role).Value : "User";
     var userProfil = (isAuthenticated) ? User.FindFirst(ClaimTypes.UserData).Value : "/imagess/default.png";
@@ -118,7 +122,8 @@
     <script src="~/js/admin.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    @if (!string.IsNullOrEmpty(TempData["mesaj"]?.ToString()))
+    @try{
+    if (!string.IsNullOrEmpty(TempData["mesaj"]?.ToString()))
     {
         <text>
             <script>
@@ -126,6 +131,9 @@
             </script>
         </text>
         TempData["mesaj"] = null; // hata'yı sıfırla
+    }
+    }catch{
+
     }
 </body>
 

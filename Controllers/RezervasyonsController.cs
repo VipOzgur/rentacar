@@ -50,10 +50,10 @@ namespace Rentacar.Controllers
         // GET: Rezervasyons/Create
         public IActionResult Create()
         {
-            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id");
-            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id");
-            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Ad");
+            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Marka");
+            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Ad");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Ad");
             return View();
         }
 
@@ -62,7 +62,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AracId,UserId,StartDate,FinishDate,Durum,Onay,AlisLokasyonId,TeslimLokasyonId,KaskoId,Fiyat,Not")] Rezervasyon rezervasyon)
+        public async Task<IActionResult> Create([FromForm] Rezervasyon rezervasyon)
         {
             if (ModelState.IsValid)
             {
@@ -70,10 +70,10 @@ namespace Rentacar.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.AlisLokasyonId);
-            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", rezervasyon.AracId);
-            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.TeslimLokasyonId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", rezervasyon.UserId);
+            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Ad", rezervasyon.AlisLokasyonId);
+            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Marka", rezervasyon.AracId);
+            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Ad", rezervasyon.TeslimLokasyonId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Ad", rezervasyon.UserId);
             return View(rezervasyon);
         }
 
@@ -90,10 +90,10 @@ namespace Rentacar.Controllers
             {
                 return NotFound();
             }
-            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.AlisLokasyonId);
-            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", rezervasyon.AracId);
-            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.TeslimLokasyonId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", rezervasyon.UserId);
+            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Ad", rezervasyon.AlisLokasyonId);
+            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Marka", rezervasyon.AracId);
+            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Ad", rezervasyon.TeslimLokasyonId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Ad", rezervasyon.UserId);
             return View(rezervasyon);
         }
 
@@ -102,7 +102,7 @@ namespace Rentacar.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AracId,UserId,StartDate,FinishDate,Durum,Onay,AlisLokasyonId,TeslimLokasyonId,KaskoId,Fiyat,Not")] Rezervasyon rezervasyon)
+        public async Task<IActionResult> Edit(int id, [FromForm] Rezervasyon rezervasyon)
         {
             if (id != rezervasyon.Id)
             {
@@ -129,10 +129,10 @@ namespace Rentacar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.AlisLokasyonId);
-            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Id", rezervasyon.AracId);
-            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Id", rezervasyon.TeslimLokasyonId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", rezervasyon.UserId);
+            ViewData["AlisLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Ad", rezervasyon.AlisLokasyonId);
+            ViewData["AracId"] = new SelectList(_context.Araclars, "Id", "Marka", rezervasyon.AracId);
+            ViewData["TeslimLokasyonId"] = new SelectList(_context.Lokasyonlars, "Id", "Ad", rezervasyon.TeslimLokasyonId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Ad", rezervasyon.UserId);
             return View(rezervasyon);
         }
 

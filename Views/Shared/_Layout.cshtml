@@ -1,7 +1,7 @@
 ﻿﻿@using System.Security.Claims;
 @{
     bool isAuthenticated = User.Identity.IsAuthenticated;
-    var userName = (isAuthenticated) ? User.FindFirst(ClaimTypes.NameIdentifier).Value : "Misafir";
+    var userName = (isAuthenticated) ? User.FindFirst(ClaimTypes.Name).Value : "Misafir";
     var userId = (isAuthenticated) ? User.FindFirst(ClaimTypes.Sid).Value : "-1";
     var userRole = (isAuthenticated) ? User.FindFirst(ClaimTypes.Role).Value : "User";
     var userProfil = (isAuthenticated) ? User.FindFirst(ClaimTypes.UserData).Value : "/imagess/default.png";
