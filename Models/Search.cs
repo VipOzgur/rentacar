@@ -10,5 +10,9 @@
         public DateTime? StartDate { get; set; }
 
         public DateTime? FinishDate { get; set; }
+
+        public TimeSpan? StartTime { get; set; }
+
+        public TimeSpan? FinishTime { get; set; }
     }
 }

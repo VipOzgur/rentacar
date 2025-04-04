@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Rentacar.Models;
 
 namespace Rentacar.Controllers
@@ -61,13 +57,13 @@ namespace Rentacar.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 if (araclar.ImageFile != null)
                 {
                     try
                     {
-                        imgPath = await helperClass.ImageSaveAsWebPAsync(araclar.ImageFile,araclar.Marka+araclar.Model);
-                        araclar.Profil = imgPath; //Resim yolunu veri tabanına ekleme
+                        string imgPath = await  helperClass.ImageSaveDefaultAsync(araclar.ImageFile, araclar.Marka + araclar.Model);
+                        araclar.Profil = imgPath; // Resim yolunu veritabanına ekleme
                     }
                     catch (Exception)
                     {
@@ -75,23 +71,25 @@ namespace Rentacar.Controllers
                         _context.DbLogs.Add(new DbLogs
                         {
                             Not = "",
-                            Message = "Resim ekleme",
-                            Konum= "Araclars Create"
-                        }); ;
+                            Message = "Resim ekleme hatası",
+                            Konum = "Araclars Create"
+                        });
                     }
                 }
                 else
                 {
-                    //değil ise varsayılanı ekliyoruz
+                    // Resim yoksa varsayılan profil resmi
                     araclar.Profil = "/imagess/default.png";
                 }
-                if (araclar.ImageFiles != null) {
+
+                if (araclar.ImageFiles != null)
+                {
                     try
                     {
                         foreach (var item in araclar.ImageFiles)
                         {
-                            imgPath = await helperClass.ImageSaveAsWebPAsync(item,araclar.Marka+araclar.Model);
-                            araclar.Resims.Add(new Resim { Url=imgPath, AltG="Araç Resmi"});
+                            string imgPath = await helperClass.ImageSaveDefaultAsync(item, araclar.Marka + araclar.Model);
+                            araclar.Resims.Add(new Resim { Url = imgPath, AltG = "Araç Resmi" });
                         }
                     }
                     catch (Exception)
@@ -99,11 +97,12 @@ namespace Rentacar.Controllers
                         _context.DbLogs.Add(new DbLogs
                         {
                             Not = "",
-                            Message = "Resim ekleme",
+                            Message = "Çoklu resim ekleme hatası",
                             Konum = "Araclars Create"
                         });
                     }
                 }
+
                 _context.Add(araclar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -185,9 +184,26 @@ namespace Rentacar.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var araclar = await _context.Araclars.FindAsync(id);
+            var araclar = await _context.Araclars.Include(x => x.Resims).Include(x => x.Rezervasyons).FirstOrDefaultAsync(x=>x.Id==id);
+                
             if (araclar != null)
             {
+                if(araclar.Rezervasyons != null && araclar.Rezervasyons.Any())
+                {
+                    TempData["mesaj"] = "Aracın Rezervasyonu var";
+                    return View(araclar);
+                }
+                if (araclar.Profil != null) {
+                    helperClass.DeleteImageTwo(araclar.Profil);
+                }
+                if(araclar.Resims != null && araclar.Resims.Any())
+                {
+                    foreach(var x in araclar.Resims)
+                    {
+                        helperClass.DeleteImageTwo(x.Url);
+                    }
+                    _context.Resims.RemoveRange(araclar.Resims);
+                }      
                 _context.Araclars.Remove(araclar);
             }
 

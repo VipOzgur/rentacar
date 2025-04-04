@@ -1,0 +1,83 @@
+﻿@model Rentacar.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Rentacar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="col-md-4">
+            <form asp-action="Register" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" type="file" class="form-control" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Ad" class="control-label"></label>
+                    <input asp-for="Ad" class="form-control" type="text" placeholder="Adınızı girin" />
+                    <span asp-validation-for="Ad" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Soyad" class="control-label"></label>
+                    <input asp-for="Soyad" class="form-control" placeholder="Soyadınızı girin" />
+                    <span asp-validation-for="Soyad" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Telefon" class="control-label"></label>
+                    <input asp-for="Telefon" class="form-control" placeholder="telefon girin" />
+                    <span asp-validation-for="Telefon" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Eposta" class="control-label"></label>
+                    <input asp-for="Eposta" class="form-control" placeholder="telefon girin" />
+                    <span asp-validation-for="Eposta" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Şifrenizi girin" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Şifrenizi tekrar girin" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <a asp-action="Login" asp-controller="Login">Zaten hesabın var mı? Giriş Yap</a>
+                <div class="form-group">
+                    <input type="submit" value="Register" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+</body>
+
+</html>
+   
+@if (!string.IsNullOrEmpty(TempData["hata"]?.ToString()))
+{
+    <text>
+        <script>
+            alert('@TempData["hata"]?.ToString()');
+        </script>
+    </text>
+    TempData["hata"] = null; // hata'yı sıfırla
+}

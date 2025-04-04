@@ -66,7 +66,7 @@ namespace Rentacar.Controllers
                 {
                     try
                     {
-                        imgPath = await helperClass.ImageSaveAsWebPAsync(user.ImageFile,user.Ad+user.Soyad);
+                        imgPath = helperClass.ImageSaveAsWebPAsync(user.ImageFile,user.Ad+user.Soyad); //await
                         user.Profil = imgPath; //Resim yolunu veri tabanına ekleme
                     }
                     catch (Exception)
