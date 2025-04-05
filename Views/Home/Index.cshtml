@@ -1,15 +1,18 @@
 ﻿@model IEnumerable<Rentacar.Models.Araclar>
 
 @{
-<<<<<<< HEAD
+
     ViewData["Title"] = "Araç Listesi";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section ozelCss {
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 }
 
 <section class="hero-section parallax position-relative">
   <div class="container-fluid d-flex align-items-center justify-content-between hero-content">
     <div class="hero-text text-white p-5">
-      <h1 class="display-4 fw-bold">Hayalinizdeki aracı bugün keşfedin!</h1>
+      <h1 class="display-4 fw-bold">Hayalinizde ki aracı bugün keşfedin!</h1>
       <p class="fs-5">Hızlı, kolay ve uygun fiyatlı araç kiralama.</p>
       <a href="/Araclar" class="btn btn-primary btn-lg rounded-pill mt-3">Keşfet</a>
     </div>
@@ -17,11 +20,11 @@
   <h5 class="text-center mb-4">Araç Kirala</h5>
   <form>
     <div class="mb-3">
-      <label for="pickup" class="form-label">Pick-up Address</label>
+      <label for="pickup" class="form-label">Başlangıç adresi</label>
       <input type="text" class="form-control" id="pickup" placeholder="Başlangıç adresi">
     </div>
     <div class="mb-3">
-      <label for="dropoff" class="form-label">Drop-off Address</label>
+      <label for="dropoff" class="form-label">Bitiş Adresi</label>
       <input type="text" class="form-control" id="dropoff" placeholder="Teslim adresi">
     </div>
     <div class="mb-3">
@@ -265,144 +268,4 @@
     </div>
   </div>
 </section>
-=======
-    ViewData["Title"] = "Home";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
-@section ozelCss {
-    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
-}
-
-<h1>Index</h1>
-
-<p> 
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Aciklama)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Plaka)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marka)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Profil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Yakit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vites)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fiyat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Durum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Depozito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Km)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GoruntulemeSayisi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KiralanmaSayisi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MotorGucu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.YakitKm)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdateDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Aciklama)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Plaka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profil)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yakit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vites)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fiyat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Durum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Depozito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Km)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GoruntulemeSayisi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KiralanmaSayisi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MotorGucu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YakitKm)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
->>>>>>> f37e539c5b11e6a233709130d69a032c89bd1f34

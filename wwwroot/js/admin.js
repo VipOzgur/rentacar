@@ -66,22 +66,22 @@ function setActive(value) {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    var calendarEl = document.getElementById('calendar');
+//document.addEventListener('DOMContentLoaded', function () {
+//    var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      events: [
-        { title: 'Araç Bakımı', start: '2025-01-23', end: '2025-01-25' },
-        { title: 'Rezervasyon Teslimi', start: '2025-01-20' },
-        { title: 'Teslim Alma', start: '2025-01-26', allDay: true }
-      ]
-    });
+//    var calendar = new FullCalendar.Calendar(calendarEl, {
+//      initialView: 'dayGridMonth',
+//      headerToolbar: {
+//        left: 'prev,next today',
+//        center: 'title',
+//        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+//      },
+//      events: [
+//        { title: 'Araç Bakımı', start: '2025-01-23', end: '2025-01-25' },
+//        { title: 'Rezervasyon Teslimi', start: '2025-01-20' },
+//        { title: 'Teslim Alma', start: '2025-01-26', allDay: true }
+//      ]
+//    });
 
-    calendar.render();
-  });
+//    calendar.render();
+//  });
