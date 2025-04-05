@@ -22,6 +22,8 @@ public partial class User : BaseEntity
     public string? Eposta { get; set; }
 
     public string? Password { get; set; }
+    [NotMapped]
+    public string? NewPassword { get; set; }
 
     public int RoleId { get; set; }
 

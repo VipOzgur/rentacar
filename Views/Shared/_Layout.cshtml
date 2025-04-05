@@ -34,9 +34,12 @@
                 @if (isAuthenticated)
                 {
                     <li class="nav-item d-flex align-items-center me-3">
+                            <a asp-action="Profil" asp-controller="Home">
+
                         <img src="@userProfil" alt="User Profil" class="rounded-circle me-2 profile-image">
                         <span class="fw-bold text-dark">@userName</span>
                         <small class="text-muted ms-1">(@userRole)</small>
+                        </a>    
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary rounded-pill px-4 py-1" asp-area="" asp-controller="RezervasyonUser" asp-action="Index">Rezervasyonlarım</a>
