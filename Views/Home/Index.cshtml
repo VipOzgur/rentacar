@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<Rentacar.Models.Araclar>
 
 @{
+
     ViewData["Title"] = "Araç Listesi";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section ozelCss {
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 }
 
 <section class="hero-section parallax position-relative">
   <div class="container-fluid d-flex align-items-center justify-content-between hero-content">
     <div class="hero-text text-white p-5">
-      <h1 class="display-4 fw-bold">Hayalinizdeki aracı bugün keşfedin!</h1>
+      <h1 class="display-4 fw-bold">Hayalinizde ki aracı bugün keşfedin!</h1>
       <p class="fs-5">Hızlı, kolay ve uygun fiyatlı araç kiralama.</p>
       <a href="/Araclar" class="btn btn-primary btn-lg rounded-pill mt-3">Keşfet</a>
     </div>
@@ -247,5 +251,3 @@
     </div>
   </div>
 </section>
-
-

@@ -67,7 +67,7 @@ namespace Rentacar.Controllers
             ViewData["AdminId"] = new SelectList(_context.Users, "Id", "Id", blog.AdminId);
             return View(blog);
         }
-
+        
         // GET: Blogs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
