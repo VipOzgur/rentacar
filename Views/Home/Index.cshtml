@@ -27,69 +27,44 @@
     <h2 class="text-center mb-5 fw-bold">Araçlarımız</h2>
     <div class="row g-4">
       <!-- Dinamik Kart -->
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="car-card shadow-sm">
-          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Mercedes-Benz S-Class</h5>
-            <p class="card-text">
-              <span>Kapasite: 5 Kişi</span><br>
-              <span>Vites: Otomatik</span><br>
-              <span>Günlük: 1200 TL</span>
-            </p>
-            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
-          </div>
-        </div>
-      </div>
+   <div class="row">
+        @foreach (var item in Model)
+        { 
+            <div class="col-md-4 mb-4">
+                <div class="card flip-card">
+                    <!-- Kartın Ön Yüzü -->
+                    <div class="card-front">
+                        <img src="@item.Profil" alt="Araç Fotoğrafı" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Marka @item.Model</h5>
+                            <p class="card-text">Açıklama: @item.Aciklama</p>
+                            <p class="card-text">Yakıt: @item.Yakit</p>
+                            <p class="card-text">Fiyat: @item.Fiyat TL/gün</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Detaylar</a>
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning">Düzenle</a>
+                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">Sil</a>
+                            <button class="btn btn-secondary flip-btn">Döndür</button> <!-- Döndür Butonu -->
+                        </div>
+                    </div>
+
+                    <!-- Kartın Arka Yüzü (Boş Alan) -->
+                    <div class="card-back">
+                        <!-- Burada boş bir alan olacak -->
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
 
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="car-card shadow-sm">
-          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Mercedes-Benz S-Class</h5>
-            <p class="card-text">
-              <span>Kapasite: 5 Kişi</span><br>
-              <span>Vites: Otomatik</span><br>
-              <span>Günlük: 1200 TL</span>
-            </p>
-            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
-          </div>
-        </div>
-      </div>
 
 
-
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="car-card shadow-sm">
-          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Mercedes-Benz S-Class</h5>
-            <p class="card-text">
-              <span>Kapasite: 5 Kişi</span><br>
-              <span>Vites: Otomatik</span><br>
-              <span>Günlük: 1200 TL</span>
-            </p>
-            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
-          </div>
-        </div>
-      </div>
       
       <!-- Başka bir kart -->
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="car-card shadow-sm">
-          <img src="/images/car2.jpeg" alt="Araç Resmi" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">BMW 5 Series</h5>
-            <p class="card-text">
-              <span>Kapasite: 4 Kişi</span><br>
-              <span>Vites: Otomatik</span><br>
-              <span>Günlük: 1000 TL</span>
-            </p>
-            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </section>
@@ -125,58 +100,54 @@
 
 
 <section class="testimonials-section parallax py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-4 fw-bold">Müşteri Yorumları</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="testimonial-card p-3 shadow rounded">
-          <p class="">"Harika bir hizmet aldım! Araçlar çok temiz ve konforluydu."</p>
-          <h6 class="fw-bold text-end">- Ahmet Yılmaz</h6>
+    <div class="container">
+        <h2 class="text-center mb-4 fw-bold">Müşteri Yorumları</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="testimonial-card p-4 shadow">
+                    <p>"Harika bir hizmet aldım! Araçlar çok temiz ve konforluydu."</p>
+                    <h6 class="fw-bold text-end">- Ahmet Yılmaz</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-4 shadow">
+                    <p>"Havalimanı transferi için mükemmel bir tercih. Çok profesyoneller."</p>
+                    <h6 class="fw-bold text-end">- Ayşe Kaya</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-4 shadow">
+                    <p>"Araçlar çok temiz ve bakımlıydı. Yolculuğum sorunsuz geçti. Harika bir hizmet!"</p>
+                    <h6 class="fw-bold text-end">- Mehmet Yılmaz</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-4 shadow">
+                    <p>"Rezervasyon süreci çok kolaydı. Güler yüzlü ve yardımcı bir ekip var."</p>
+                    <h6 class="fw-bold text-end">- Elif Demir</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-4 shadow">
+                    <p>"Fiyatlar gerçekten uygun ve araç seçenekleri oldukça geniş. Kesinlikle tavsiye ederim."</p>
+                    <h6 class="fw-bold text-end">- Ahmet Çelik</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-4 shadow">
+                    <p>"Havalimanında zamanında teslim aldım, her şey tam da istediğim gibiydi. Teşekkürler!"</p>
+                    <h6 class="fw-bold text-end">- Fatma Şahin</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-4 shadow">
+                    <p>"Düğünümdeki araç hizmeti mükemmeldi. Çok teşekkür ederim!"</p>
+                    <h6 class="fw-bold text-end">- Mehmet Demir</h6>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial-card p-3 shadow rounded">
-          <p class="">"Havalimanı transferi için mükemmel bir tercih. Çok profesyoneller."</p>
-          <h6 class="fw-bold text-end">- Ayşe Kaya</h6>
-        </div>
-      </div>
-      <div class="col-md-4">
-  <div class="testimonial-card p-3 shadow rounded">
-    <p class="">"Araçlar çok temiz ve bakımlıydı. Yolculuğum sorunsuz geçti. Harika bir hizmet!"</p>
-    <h6 class="fw-bold text-end">- Mehmet Yılmaz</h6>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="testimonial-card p-3 shadow rounded">
-    <p class="">"Rezervasyon süreci çok kolaydı. Güler yüzlü ve yardımcı bir ekip var."</p>
-    <h6 class="fw-bold text-end">- Elif Demir</h6>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="testimonial-card p-3 shadow rounded">
-    <p class="">"Fiyatlar gerçekten uygun ve araç seçenekleri oldukça geniş. Kesinlikle tavsiye ederim."</p>
-    <h6 class="fw-bold text-end">- Ahmet Çelik</h6>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="testimonial-card p-3 shadow rounded">
-    <p class="">"Havalimanında zamanında teslim aldım, her şey tam da istediğim gibiydi. Teşekkürler!"</p>
-    <h6 class="fw-bold text-end">- Fatma Şahin</h6>
-  </div>
-</div>
-      <div class="col-md-4">
-        <div class="testimonial-card p-3 shadow rounded">
-          <p class="">"Düğünümdeki araç hizmeti mükemmeldi. Çok teşekkür ederim!"</p>
-          <h6 class="fw-bold text-end">- Mehmet Demir</h6>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
-
 
 
 
