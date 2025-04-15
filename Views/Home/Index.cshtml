@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section ozelCss {
-    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 }
 
 <section class="hero-section parallax position-relative">
@@ -29,72 +29,44 @@
 <section class="car-cards-section parallax py-5">
   <div class="container">
     <h2 class="text-center mb-5 fw-bold">Araçlarımız</h2>
-    <div class="row g-4">
-      <!-- Dinamik Kart -->
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="car-card shadow-sm">
-          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Mercedes-Benz S-Class</h5>
-            <p class="card-text">
-              <span>Kapasite: 5 Kişi</span><br>
-              <span>Vites: Otomatik</span><br>
-              <span>Günlük: 1200 TL</span>
-            </p>
-            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
-          </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="car-card shadow-sm">
-          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Mercedes-Benz S-Class</h5>
-            <p class="card-text">
-              <span>Kapasite: 5 Kişi</span><br>
-              <span>Vites: Otomatik</span><br>
-              <span>Günlük: 1200 TL</span>
-            </p>
-            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="car-card shadow-sm">
-          <img src="/images/car1.jpeg" alt="Araç Resmi" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">Mercedes-Benz S-Class</h5>
-            <p class="card-text">
-              <span>Kapasite: 5 Kişi</span><br>
-              <span>Vites: Otomatik</span><br>
-              <span>Günlük: 1200 TL</span>
-            </p>
-            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Başka bir kart -->
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="car-card shadow-sm">
-          <img src="/images/car2.jpeg" alt="Araç Resmi" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">BMW 5 Series</h5>
-            <p class="card-text">
-              <span>Kapasite: 4 Kişi</span><br>
-              <span>Vites: Otomatik</span><br>
-              <span>Günlük: 1000 TL</span>
-            </p>
-            <a href="/Araclar/Detay" class="btn btn-primary w-100 rounded-pill">Detayları Gör</a>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -129,57 +101,102 @@
 
 
 <section class="testimonials-section parallax py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-4 fw-bold">Müşteri Yorumları</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="testimonial-card p-3 shadow rounded">
-          <p class="">"Harika bir hizmet aldım! Araçlar çok temiz ve konforluydu."</p>
-          <h6 class="fw-bold text-end">- Ahmet Yılmaz</h6>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial-card p-3 shadow rounded">
-          <p class="">"Havalimanı transferi için mükemmel bir tercih. Çok profesyoneller."</p>
-          <h6 class="fw-bold text-end">- Ayşe Kaya</h6>
-        </div>
-      </div>
-      <div class="col-md-4">
-  <div class="testimonial-card p-3 shadow rounded">
-    <p class="">"Araçlar çok temiz ve bakımlıydı. Yolculuğum sorunsuz geçti. Harika bir hizmet!"</p>
-    <h6 class="fw-bold text-end">- Mehmet Yılmaz</h6>
-  </div>
-</div>
+    <div class="container">
+        <h2 class="text-center mb-4 fw-bold">Müşteri Yorumları</h2>
 
-<div class="col-md-4">
-  <div class="testimonial-card p-3 shadow rounded">
-    <p class="">"Rezervasyon süreci çok kolaydı. Güler yüzlü ve yardımcı bir ekip var."</p>
-    <h6 class="fw-bold text-end">- Elif Demir</h6>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="testimonial-card p-3 shadow rounded">
-    <p class="">"Fiyatlar gerçekten uygun ve araç seçenekleri oldukça geniş. Kesinlikle tavsiye ederim."</p>
-    <h6 class="fw-bold text-end">- Ahmet Çelik</h6>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="testimonial-card p-3 shadow rounded">
-    <p class="">"Havalimanında zamanında teslim aldım, her şey tam da istediğim gibiydi. Teşekkürler!"</p>
-    <h6 class="fw-bold text-end">- Fatma Şahin</h6>
-  </div>
-</div>
-      <div class="col-md-4">
-        <div class="testimonial-card p-3 shadow rounded">
-          <p class="">"Düğünümdeki araç hizmeti mükemmeldi. Çok teşekkür ederim!"</p>
-          <h6 class="fw-bold text-end">- Mehmet Demir</h6>
+        <!-- VAR OLAN YORUMLAR + YENİLERİN EKLENECEĞİ ALAN -->
+        <div class="row g-4" id="yorumlarAlani">
+            <div class="col-md-4">
+                <div class="testimonial-card p-3 shadow rounded">
+                    <p>"Harika bir hizmet aldım! Araçlar çok temiz ve konforluydu."</p>
+                    <h6 class="fw-bold text-end mb-0">- Ahmet Yılmaz</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-3 shadow rounded">
+                    <p>"Havalimanı transferi için mükemmel bir tercih. Çok profesyoneller."</p>
+                    <h6 class="fw-bold text-end mb-0">- Ayşe Kaya</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-3 shadow rounded">
+                    <p>"Araçlar çok temiz ve bakımlıydı. Yolculuğum sorunsuz geçti. Harika bir hizmet!"</p>
+                    <h6 class="fw-bold text-end mb-0">- Mehmet Yılmaz</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-3 shadow rounded">
+                    <p>"Rezervasyon süreci çok kolaydı. Güler yüzlü ve yardımcı bir ekip var."</p>
+                    <h6 class="fw-bold text-end mb-0">- Elif Demir</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-3 shadow rounded">
+                    <p>"Fiyatlar gerçekten uygun ve araç seçenekleri oldukça geniş. Kesinlikle tavsiye ederim."</p>
+                    <h6 class="fw-bold text-end mb-0">- Ahmet Çelik</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-3 shadow rounded">
+                    <p>"Havalimanında zamanında teslim aldım, her şey tam da istediğim gibiydi. Teşekkürler!"</p>
+                    <h6 class="fw-bold text-end mb-0">- Fatma Şahin</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-3 shadow rounded">
+                    <p>"Düğünümdeki araç hizmeti mükemmeldi. Çok teşekkür ederim!"</p>
+                    <h6 class="fw-bold text-end mb-0">- Mehmet Demir</h6>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <!-- YORUM EKLEME FORMU -->
+        <div class="mt-5">
+            <h4 class="mb-3 fw-semibold text-white">Yorum Bırakın</h4>
+            <form id="yorumFormu" class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" id="isim" class="form-control" placeholder="Ad Soyad" required />
+                </div>
+                <div class="col-md-12">
+                    <textarea id="yorum" class="form-control" rows="3" placeholder="Yorumunuz" required></textarea>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Yorumu Gönder</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </section>
+
+<script>
+    document.getElementById("yorumFormu").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const isim = document.getElementById("isim").value.trim();
+      const yorum = document.getElementById("yorum").value.trim();
+      const tarih = new Date().toLocaleDateString("tr-TR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+
+      if (isim && yorum) {
+        const yeniYorum = document.createElement("div");
+        yeniYorum.classList.add("col-md-4");
+        yeniYorum.innerHTML = `
+          <div class="testimonial-card p-3 shadow rounded">
+            <p>"${yorum}"</p>
+            <h6 class="fw-bold text-end mb-0">- ${isim}</h6>
+            <small class="text-end d-block text-muted">${tarih}</small>
+          </div>
+        `;
+
+        document.getElementById("yorumlarAlani").prepend(yeniYorum);
+        document.getElementById("yorumFormu").reset();
+      }
+    });
+</script>
+
 
 
 
