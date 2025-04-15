@@ -29,44 +29,47 @@
 <section class="car-cards-section parallax py-5">
   <div class="container">
     <h2 class="text-center mb-5 fw-bold">Araçlarımız</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <div class="row g-4">
+      <!-- Dinamik Kart -->
+   <div class="row">
+        @foreach (var item in Model)
+        { 
+            <div class="col-md-4 mb-4">
+                <div class="card flip-card">
+                    <!-- Kartın Ön Yüzü -->
+                    <div class="card-front">
+                        <img src="@item.Profil" alt="Araç Fotoğrafı" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Marka @item.Model</h5>
+                            <p class="card-text">Açıklama: @item.Aciklama</p>
+                            <p class="card-text">Yakıt: @item.Yakit</p>
+                            <p class="card-text">Fiyat: @item.Fiyat TL/gün</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Detaylar</a>
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning">Düzenle</a>
+                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">Sil</a>
+                            <button class="btn btn-secondary flip-btn">Döndür</button> <!-- Döndür Butonu -->
+                        </div>
+                    </div>
+
+                    <!-- Kartın Arka Yüzü (Boş Alan) -->
+                    <div class="card-back">
+                        <!-- Burada boş bir alan olacak -->
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
+    </div>
+</div>
+
+
+
+
+      
+      <!-- Başka bir kart -->
+      
+    </div>
   </div>
 </section>
 
@@ -196,7 +199,6 @@
       }
     });
 </script>
-
 
 
 

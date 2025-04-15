@@ -229,6 +229,40 @@ header {
  
 }
 
+
+/* yorumlar css */
+.testimonial-card {
+  background-color: rgba(255, 255, 255, 0.7); 
+  border: 1px solid rgba(0, 0, 0, 0.1); 
+  border-radius: 12px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+  min-height: 150px; 
+  transition: transform 0.3s, box-shadow 0.3s; 
+}
+
+
+  .testimonial-card:hover {
+      transform: translateY(-5px); 
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+  }
+
+  
+  .testimonial-card h6 {
+      font-size: 1rem;
+      color: #444; 
+      margin-top: 15px;
+  }
+
+  .testimonial-card p {
+      font-size: 0.95rem;
+      line-height: 1.6; 
+      color: #333;
+  }
+
+
+  
+
 /* Genel Parallax Ayarları */
 .parallax {
   background-attachment: fixed;
