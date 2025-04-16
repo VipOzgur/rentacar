@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Ödeme";
+}
+
+<h2>İyzico Ödeme Formu</h2>
+@if (ViewBag.CheckoutForm != null)
+{
+    @Html.Raw(ViewBag.CheckoutForm)
+}
+else
+{
+    <p>Form yüklenemedi.</p>
+}
+    

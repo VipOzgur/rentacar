@@ -2,90 +2,51 @@
 using Iyzipay.Model;
 using Iyzipay.Request;
 using Microsoft.AspNetCore.Mvc;
+using Rentacar.Services;
 
-[Route("[controller]")]
-[ApiController]
-public class PaymentController : ControllerBase
+namespace Rentacar.Controllers
 {
-    [HttpPost("pay")]
-    public async Task<IActionResult> Pay()
+    public class PaymentController : Controller
     {
-        Options options = new Options
-        {
-            ApiKey = "sandbox-2FUhsidyfuScSKndWLDqmqIEyLOpckjP",  // BURAYA KENDİ API ANAHTARLARINI KOY
-            SecretKey = "sandbox-JYYuNFbfYNdymlDrNEnGeo6ZlAnpTYnO",
-            BaseUrl = "https://sandbox-api.iyzipay.com"
-        };
+        private readonly PaymentService _paymentService;
 
-        CreatePaymentRequest request = new CreatePaymentRequest
+        public PaymentController(PaymentService paymentService)
         {
-            Locale = Locale.TR.ToString(),
-            ConversationId = "123456789",
-            Price = "100.0",
-            PaidPrice = "100.0",
-            Currency = Currency.TRY.ToString(),
-            Installment = 1,
-            BasketId = "B67832",
-            PaymentChannel = PaymentChannel.WEB.ToString(),
-            PaymentGroup = PaymentGroup.PRODUCT.ToString(),
-            PaymentCard = new PaymentCard
+            _paymentService = paymentService;
+        }
+
+        public async Task<IActionResult> Checkout()
+        {
+            var formHtml = await _paymentService.CreateCheckoutForm(400, "deneme@example.com");
+            ViewBag.CheckoutForm = formHtml;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Callback()
+        {
+            var token = Request.Form["token"];
+            if (string.IsNullOrEmpty(token))
             {
-                CardHolderName = "Buğra Kurnaz",
-                CardNumber = "5528790000000008",
-                ExpireMonth = "12",
-                ExpireYear = "2030",
-                Cvc = "123",
-                RegisterCard = 0
-            },
-            BasketItems = new List<BasketItem>
-            {
-                new BasketItem
-                {
-                    Id = "BI101",
-                    Name = "Rent A Car Hizmeti",
-                    Category1 = "Araç Kiralama",
-                    ItemType = BasketItemType.VIRTUAL.ToString(),
-                    Price = "100.0"
-                }
-            },
-            Buyer = new Buyer
-            {
-                Id = "BY789",
-                Name = "Buğra",
-                Surname = "Kurnaz",
-                GsmNumber = "+905350000000",
-                Email = "johndoe@example.com",
-                IdentityNumber = "74300864791",
-                RegistrationAddress = "Istanbul, Turkey",
-                City = "Istanbul",
-                Country = "Turkey",
-                ZipCode = "34000"
-            },
-            //ShippingAddress = new Address
-            //{
-            //    ContactName = "Buğra Kurnaz",
-            //    City = "Istanbul",
-            //    Country = "Turkey",
-            //    Description = "Istanbul, Turkey"
-            //},
-            BillingAddress = new Address
-            {
-                ContactName = "Buğra Kurnaz",
-                City = "Istanbul",
-                Country = "Turkey",
-                Description = "Istanbul, Turkey"
+                ViewBag.Message = "Ödeme sırasında bir hata oluştu (token alınamadı).";
+                return View();
             }
-        };
 
-        Payment payment = await Payment.Create(request, options);
+            var checkoutForm = await _paymentService.RetrieveCheckoutForm(token);
 
-        if (payment.Status == "success")
-        {
-            return Ok(new { message = "Ödeme Başarılı!", payment });
+            if (checkoutForm.Status == "success")
+            {
+                ViewBag.Message = "Ödeme başarılı!";
+                // Burada rezervasyon kaydı yapılabilir
+            }
+            else
+            {
+                ViewBag.Message = "Ödeme başarısız: " + checkoutForm.ErrorMessage;
+            }
+
+            return View();
         }
-        else
-        {
-            return BadRequest(new { message = "Ödeme Başarısız!", error = payment.ErrorMessage });
-        }
+
+
     }
 }
