@@ -1,6 +1,11 @@
 ﻿@using System.Security.Claims
 @model Rentacar.Models.Rezervasyon
 
+
+
+@section ozelCss {
+    <link rel="stylesheet" href="~/css/odeme.css" asp-append-version="true" />
+}
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -34,257 +39,158 @@
 
 
 
-<div class="details-card shadow-lg p-4 bg-white rounded">
-    <h4 class="section-title text-center mb-3">Araç Bilgileri</h4>
-    <hr class="mb-4" />
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Resimler:</strong>
-                <span class="details-content">
-                    <img src="@Html.DisplayFor(model => araba.Profil)" alt="Profil Resmi" style="height:100px; width:100px;">
-                    @* @{
-                        foreach (var item in araba.Resims)
+<div class="page-wrapper">
+
+    <!-- SOL: Araç Bilgileri -->
+    <div class="details-card shadow-lg bg-white rounded p-3">
+        <h4 class="section-title text-center mb-3">Araç Bilgileri</h4>
+        <hr class="mb-4" />
+
+        <div class="details-item mb-3 text-center">
+            <strong class="details-title d-block mb-2"></strong>
+            <span class="details-content d-block">
+                <img src="@Html.DisplayFor(model => araba.Profil)" alt="Profil Resmi" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 8px;" />
+            </span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="details-item">
+                    <strong class="details-title">Açıklama:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.Aciklama)</span>
+                </div>
+                <div class="details-item">
+                    <strong class="details-title">Marka:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.Marka)</span>
+                </div>
+                <div class="details-item">
+                    <strong class="details-title">Model:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.Model)</span>
+                </div>
+                <div class="details-item">
+                    <strong class="details-title">Fiyat:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.Fiyat)</span>
+                </div>
+                <div class="details-item">
+                    <strong class="details-title">Motor Gücü:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.MotorGucu)</span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="details-item">
+                    <strong class="details-title">Depozito:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.Depozito)</span>
+                </div>
+                <div class="details-item">
+                    <strong class="details-title">Kilometre:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.Km)</span>
+                </div>
+                <div class="details-item">
+                    <strong class="details-title">Yakıt:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.Yakit)</span>
+                </div>
+                <div class="details-item">
+                    <strong class="details-title">Vites:</strong>
+                    <span class="details-content">@Html.DisplayFor(model => araba.Vites)</span>
+                </div>
+                <div class="details-item">
+                    <strong class="details-title">Toplam Gün:</strong>
+                    <span class="details-content">@gunFarki</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SAĞ: Rezervasyon Bilgisi -->
+    <div class="field-content">
+        <div class="rezervasyonalani">
+            <div class="rezervasyon-baslik"><i class="fa fa-car"></i> Rezervasyon Bilgisi</div>
+            <form asp-controller="RezervasyonUser" asp-action="Create" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label><i class="fa fa-map-marker"></i> Alış Yeri Seçiniz:</label>
+                    <select asp-for="AlisLokasyonId" class="form-control" asp-items="ViewBag.AlisLokasyonId"></select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa fa-map-marker"></i> Teslim Yeri Seçiniz:</label>
+                    <select asp-for="TeslimLokasyonId" class="form-control" asp-items="ViewBag.TeslimLokasyonId"></select>
+                </div>
+
+                <input type="hidden" asp-for="AracId" value="@araba.Id" />
+
+                <div class="form-group">
+                    <label><i class="fa fa-calendar"></i> Alış Tarihi & Saati:</label>
+                    <div class="d-flex gap-2">
+                        <input type="date" class="form-control" asp-for="StartDate" value="@ViewBag.StartDate" readonly />
+                        <input type="time" class="form-control" name="alissaat" value="09:00" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa fa-calendar"></i> Teslim Tarihi & Saati:</label>
+                    <div class="d-flex gap-2">
+                        <input type="date" class="form-control" asp-for="FinishDate" value="@ViewBag.FinishDate" readonly />
+                        <input type="time" class="form-control" name="donussaat" value="09:00" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa fa-gift"></i> Ekstralar / İstekler:</label>
+                    <div class="extras">
+                        @if (extralars != null && extralars.Any())
                         {
-                            <img src="@item.Url" alt="@item.AltG" style="height:100px; width:100px;">
-
-                        }
-                    } *@
-                </span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Açıklama:</strong>
-                <span class="details-content">@Html.DisplayFor(model => araba.Aciklama)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Marka:</strong>
-                <span class="details-content">@Html.DisplayFor(model => araba.Marka)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Model:</strong>
-                <span class="details-content">@Html.DisplayFor(model => araba.Model)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Fiyat:</strong>
-                <span class="details-content">@Html.DisplayFor(model => araba.Fiyat)</span>
-            </div>
-        </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Profil:</strong>
-            <span class="details-content">@Html.DisplayFor(model => araba.Profil)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Motor Gücü:</strong>
-            <span class="details-content">@Html.DisplayFor(model => araba.MotorGucu)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Depozito:</strong>
-            <span class="details-content">@Html.DisplayFor(model => araba.Depozito)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Kilometre:</strong>
-            <span class="details-content">@Html.DisplayFor(model => araba.Km)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Yakıt:</strong>
-            <span class="details-content">@Html.DisplayFor(model => araba.Yakit)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Km Başına Yakıt:</strong>
-            <span class="details-content">@Html.DisplayFor(model => araba.YakitKm)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Vites:</strong>
-            <span class="details-content">@Html.DisplayFor(model => araba.Vites)</span>
-            </div>
-        </div>
-        <div class="col-md-6 mb-3">
-            <div class="details-item">
-                <strong class="details-title">Toplam Gün</strong>
-            <span class="details-content">@gunFarki</span>
-            </div>
-        </div>
-        <!-- Daha fazla detay için aynı yapıyı devam ettirin -->
-</div>
-
-
-
-
-
-
-
-
-
-<div class="field-content col-md-5 col-lg-3">
-
-
-
-    <div class="rezervasyonalani olcu">
-        <div class="rezervasyon-baslik"><i class="fa fa-car"></i> Rezervasyon Bilgisi</div>
-        <form asp-controller="RezervasyonUser"  asp-action="Create" method="post" enctype="multipart/form-data">
-            
-            <div class="form-group">
-                <label for="alisyeri"><i class="fa fa-map-marker"></i> Alış Yeri Seçiniz:</label>
-                <select asp-for="AlisLokasyonId" class="form-control" asp-items="ViewBag.AlisLokasyonId"></select>
-            </div>
-            <div class="form-group">
-                <label for="donusyeri"><i class="fa fa-map-marker"></i> Teslim Yeri Seçiniz:</label>
-                <select asp-for="TeslimLokasyonId" class="form-control" asp-items="ViewBag.TeslimLokasyonId"></select>
-            </div>
-            <input type="hidden"  value="@araba.Id" asp-for="AracId" />
-            
-            <div class="form-group">
-                <label for="alistarihsaat"><i class="fa fa-calendar"></i> Alış Tarihi &amp; Saati:</label>
-                <div class="row">
-                    <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
-
-                        <input type="date" readonly class="form-control pull-left" asp-for="StartDate" value="@ViewBag.StartDate">
-                    </div>
-                    <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
-                        <input type="time" class="form-control pull-right" name="alissaat" id="asaat" value="09:00">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="teslimtarihsaat"><i class="fa fa-calendar"></i> Teslim Tarihi &amp; Saati:</label>
-                <div class="row">
-                    <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
-                        <input type="date" class="form-control pull-left" asp-for="FinishDate" readonly value="@ViewBag.FinishDate">
-                    </div>
-                    <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
-                        <input type="time" class="form-control pull-right" name="donussaat" id="dsaat" value="09:00">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="teslimtarihsaat"><i class="fa fa-gift"></i> Ekstralar / İstekler:</label>
-                <div class="row">
-                @{
-                    if(extralars != null || extralars.Any()){
-                        foreach(var item in extralars){
-                                <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-                                    <input type="checkbox" class="pull-left" value="@item.Fiyat"> &nbsp; <b>@item.Ad :</b> <font color="#FF6600">@item.Fiyat <i class="fa fa-turkish-lira"></i></font>TL / Gün
+                            foreach (var item in extralars)
+                            {
+                                <div>
+                                    <input type="checkbox" value="@item.Fiyat" /> <b>@item.Ad:</b> <span style="color:#FF6600;">@item.Fiyat TL</span>
                                 </div>
+                            }
                         }
-                    }
-                }
-                <p>Toplam</p>
-                    <input type="text" readonly asp-for="Fiyat"  />
+                    </div>
+                    <p>Toplam</p>
+                    <input type="text" readonly asp-for="Fiyat" class="form-control" />
                 </div>
 
-            </div>
-            <div class="form-group">
-                <label for="teslimtarihsaat"><i class="fa   fa-gear"></i> Ödeme Tipi Seçiniz:</label>
-                <div class="row">
-
-
-                    <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-
-                        <input type="radio" class="pull-left" name="odemesekli" value="2" id="odemesekli_0" checked=""> &nbsp;<i class="fa  fa-money"></i> <b>Nakit</b>
+                <div class="form-group">
+                    <label><i class="fa fa-gear"></i> Ödeme Tipi:</label>
+                    <div>
+                        <input type="radio" name="odemesekli" value="2" checked /> <b>Nakit</b><br />
+                        <input type="radio" name="odemesekli" value="1" /> <b>Havale / EFT</b><br />
+                        <input type="radio" name="odemesekli" value="3" /> <b>Kredi Kartı</b>
                     </div>
-                    <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-                        <input type="radio" class="pull-left" name="odemesekli" value="1" id="odemesekli_1"> &nbsp;<i class="fa  fa-share"></i> <b>Havale / Eft</b>
-                    </div>
-                    <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-                        <input type="radio" class="pull-left" name="odemesekli" value="3" id="odemesekli_3"> &nbsp;<i class="fa fa-credit-card"></i> <b>Kredi Kartı</b>
-                    </div>
-
-
                 </div>
 
-            </div>
+                <div class="form-group">
+                    <label><i class="fa fa-user"></i> Müşteri Bilgileri:</label>
 
+                    <input type="hidden" asp-for="UserId" value="@(userIsOk ? user.Id : 0)" />
 
-            <div class="form-group">
-                <label for="teslimtarihsaat"><i class="fa  fa-user"></i> Müşteri Bilgileri:</label>
-                <div class="row">
-                    <input type="hidden" name="UserId" value="@(userIsOk ? user.Id :0)" asp-for="UserId" />
-                    <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
+                    <input type="text" class="form-control" asp-for="User.Ad" value="@(userIsOk ? user.Ad : "")" placeholder="Adınız" />
+                    <input type="text" class="form-control" asp-for="User.Soyad" value="@(userIsOk ? user.Soyad : "")" placeholder="Soyadınız" />
+                    <input type="text" class="form-control" asp-for="User.Telefon" value="@(userIsOk ? user.Telefon : "")" placeholder="Telefon" />
+                    <input type="text" class="form-control" asp-for="User.Eposta" value="@(userIsOk ? user.Eposta : "")" placeholder="E-Posta" />
+                    <input type="text" class="form-control" name="tcno" placeholder="T.C Kimlik No" />
 
-                        <input type="text" class="form-control pull-left" asp-for="User.Ad" value="@(userIsOk?user.Ad : "")"   placeholder="Adınız">
-                    </div><br><br>
-                    <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-
-                        <input type="text" class="form-control pull-left" asp-for="User.Soyad" value="@(userIsOk?user.Soyad : "")"  placeholder="Soyadınız">
-                    </div><br><br>
-
-
-
-                    <div class="col-md-9 col-lg-12 col-sm-7 col-xs-7">
-
-                        <input type="text" class="form-control pull-left" asp-for="User.Telefon"  value="@(userIsOk?user.Telefon : "")"  placeholder="Telefon Numaranız">
-                    </div><br><br>
-
-                    <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-
-                        <input type="text" class="form-control pull-left" asp-for="User.Eposta"  value="@(userIsOk?user.Eposta : "")" placeholder="E-Posta Adresiniz">
-                    </div><br><br>
-
-                    <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-
-                        <input type="text" class="form-control pull-left" name="tcno" placeholder="T.C Kimlik Numaranız">
-                    </div><br><br>
-                    @{
-                        if(!userIsOk){
-                            <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-
-                                <input type="password" class="form-control pull-left"  asp-for="User.Password" placeholder="şifre oluşturun">
-                            </div>
-
-                            <br>
-
-                            <br>
-                            <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-
-                                <input type="password" class="form-control pull-left" name="passwordAgain" placeholder="Şifre Tekrar">
-                            </div>
-
-                            <br>
-
-                            <br>
-                        }
+                    @if (!userIsOk)
+                    {
+                        <input type="password" class="form-control" asp-for="User.Password" placeholder="Şifre" />
+                        <input type="password" class="form-control" name="passwordAgain" placeholder="Şifre Tekrar" />
                     }
 
-
-                    <div class="col-md-7 col-lg-12 col-sm-7 col-xs-7">
-
-                        <textarea id="edit-message" name="mesaj" class="form-control pull-left" placeholder="Notunuz Varsa Yazınız"></textarea>
-                    </div><br><br>
-
+                    <textarea name="mesaj" class="form-control" placeholder="Notunuz varsa yazınız"></textarea>
                 </div>
 
-            </div>
-            <center>
-                @* <input type="hidden" name="aracid" value="1543"> *@
-                <button class="btn btn-large btn-primary" type="submit"  >Rezervasyonu Tamamla</button>
-            </center>
-
-        </form>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Rezervasyonu Tamamla</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

@@ -1,0 +1,32 @@
+﻿/* Kartları belirginleştir */
+.custom-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    /* Hover efekti */
+    .custom-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+/* Gri "Kirala" butonu */
+.btn-grey {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+    .btn-grey:hover {
+        background-color: #5a6268;
+        color: white; /* Bu satır yazı rengini beyaz tutar */
+    }
+
+
+
+
+
+/* custom.css */
+
+/* rezervasyon.css */

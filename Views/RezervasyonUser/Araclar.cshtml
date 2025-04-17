@@ -49,7 +49,7 @@
         @foreach (var item in Model)
         {
             <div class="col">
-                <div class="card h-100 shadow rounded-4 bg-light">
+                <div class="card h-100 rounded-4 bg-light custom-card">
                     <img src="@item.Profil" class="card-img-top" alt="@item.Marka @item.Model" style="height: 200px; object-fit: cover;" />
                     <div class="card-body">
                         <h5 class="card-title fw-bold">@item.Marka @item.Model</h5>
@@ -65,7 +65,7 @@
                            asp-route-aracid="@item.Id"
                            asp-route-today="@today1.ToString("yyyy-MM-dd")"
                            asp-route-tomorrow="@tomorrow1.ToString("yyyy-MM-dd")"
-                           class="btn btn-primary w-100 rounded-pill fw-semibold">
+                           class="btn btn-grey w-100 rounded-pill fw-semibold">
                             Kirala
                         </a>
                     </div>

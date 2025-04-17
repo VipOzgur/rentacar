@@ -1,0 +1,176 @@
+﻿.page-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* Sol: Araç Bilgileri Kartı */
+.details-card {
+    flex: 1 1 58%;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.details-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+    .details-item strong {
+        width: 40%;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .details-item .details-content {
+        width: 58%;
+        color: #555;
+    }
+
+    /* Fotoğraf stil */
+    .details-item img {
+        height: 160px;
+        width: 160px;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+        margin: 0 auto;
+    }
+
+/* Sağ: Rezervasyon Alanı */
+.field-content {
+    flex: 1 1 38%;
+}
+
+.rezervasyonalani {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    max-height: 600px; /* YÜKSEKLİK AZALTILDI */
+    overflow: hidden; /* KAYDIRMA KALDIRILDI */
+}
+
+.rezervasyon-baslik {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-control {
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Ekstra düzenlemeler */
+textarea.form-control {
+    min-height: 80px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+}
+
+.rezervasyonalani form .form-group {
+    margin-bottom: 10px;
+}
+
+.rezervasyonalani label {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.rezervasyonalani input[type="text"],
+.rezervasyonalani input[type="date"],
+.rezervasyonalani input[type="time"],
+.rezervasyonalani input[type="password"],
+.rezervasyonalani select,
+.rezervasyonalani textarea {
+    font-size: 13px;
+    padding: 5px 8px;
+    height: auto;
+}
+
+.rezervasyonalani input[type="radio"] {
+    transform: scale(0.9);
+    margin-right: 5px;
+}
+
+.rezervasyonalani .rezervasyon-baslik {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.rezervasyonalani textarea {
+    min-height: 60px;
+}
+
+.rezervasyonalani .btn {
+    font-size: 14px;
+    padding: 6px 12px;
+}
+
+/* Yeni değişiklikler */
+.rezervasyonalani {
+    max-height: 85vh; /* Sayfa yüksekliğinin %85'ini kullanacak */
+    overflow-y: auto; /* İçeriği kaydırma olmadan yatay eksende gösterecek */
+    padding: 10px; /* İçeriği kenardan uzak tutacak */
+}
+
+    .rezervasyonalani .form-group {
+        margin-bottom: 8px; /* Her alanın arasındaki boşlukları küçültüyoruz */
+    }
+
+    .rezervasyonalani label {
+        font-size: 12px; /* Etiket yazı boyutunu daha da küçültüyoruz */
+        margin-bottom: 4px; /* Etiket ile input arasındaki boşluğu küçültüyoruz */
+    }
+
+    .rezervasyonalani input[type="text"],
+    .rezervasyonalani input[type="date"],
+    .rezervasyonalani input[type="time"],
+    .rezervasyonalani input[type="password"],
+    .rezervasyonalani select,
+    .rezervasyonalani textarea {
+        font-size: 12px; /* Inputların yazı boyutunu küçültüyoruz */
+        padding: 4px 6px; /* İç boşluğu küçültüyoruz */
+        height: 30px; /* Yükseklikleri biraz daha düşürüyoruz */
+        width: 100%; /* Genişliklerini %100 yaparak tüm alanı kullanmalarını sağlıyoruz */
+        margin-bottom: 5px; /* Form elemanları arasındaki boşluğu azaltıyoruz */
+    }
+
+    .rezervasyonalani .form-group select {
+        padding-right: 20px; /* Select elementine sağdaki ok için biraz yer bırakıyoruz */
+    }
+
+    .rezervasyonalani input[type="radio"] {
+        transform: scale(0.8); /* Radyo butonlarını daha küçük yapıyoruz */
+        margin-right: 5px;
+    }
+
+    .rezervasyonalani .rezervasyon-baslik {
+        font-size: 14px; /* Başlık boyutunu küçültüyoruz */
+        margin-bottom: 10px; /* Başlık ile form arasındaki boşluğu azaltıyoruz */
+    }
+
+    .rezervasyonalani textarea {
+        min-height: 50px; /* Textarea'nın yüksekliğini kısaltıyoruz */
+    }
+
+    .rezervasyonalani .btn {
+        font-size: 13px; /* Butonun yazı boyutunu küçültüyoruz */
+        padding: 6px 12px; /* Butonun içindeki boşluğu küçültüyoruz */
+    }

@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<Rentacar.Models.Araclar>
 
 @{
+
     ViewData["Title"] = "Araç Listesi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section ozelCss {
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+}
+
+
+
 
 <section class="hero-section parallax position-relative">
   <div class="container-fluid d-flex align-items-center justify-content-between hero-content">
     <div class="hero-text text-white p-5">
-      <h1 class="display-4 fw-bold">Hayalinizdeki aracı bugün keşfedin!</h1>
+      <h1 class="display-4 fw-bold">Hayalinizde ki aracı bugün keşfedin!</h1>
       <p class="fs-5">Hızlı, kolay ve uygun fiyatlı araç kiralama.</p>
       <a href="/Araclar" class="btn btn-primary btn-lg rounded-pill mt-3">Keşfet</a>
     </div>
@@ -22,21 +29,15 @@
 
 
 
-
-
-
-
-
-
 <section class="car-cards-section py-5">
-  <div class="container">
-    <h2 class="text-center mb-4 fw-bold text-white">Araçlarımız</h2>
+    <div class="container">
+        <h2 class="text-center mb-4 fw-bold text-white">Araçlarımız</h2>
 
-    <div class="carousel-wrapper">
-      <button class="carousel-btn" id="prevBtn">←</button>
+        <div class="carousel-wrapper">
+            <button class="carousel-btn" id="prevBtn">←</button>
 
-      <div class="carousel-container" id="carousel">
-        @{
+            <div class="carousel-container" id="carousel">
+                @{
                     DateTime today1 = DateTime.Today.AddDays(1);
                     DateTime tomorrow1 = DateTime.Today.AddDays(2);
                     Search search = ViewBag.search as Search;
@@ -73,12 +74,15 @@
                 }
 
 
-      </div>
+            </div>
 
-      <button class="carousel-btn" id="nextBtn">→</button>
+            <button class="carousel-btn" id="nextBtn">→</button>
+        </div>
     </div>
-  </div>
 </section>
+
+
+
 
 
 <section class="testimonials-section parallax py-5">
@@ -113,121 +117,149 @@
 <section class="testimonials-section parallax py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-4 fw-bold">Müşteri Yorumları</h2>
-        <div class="row g-4">
+
+        <!-- VAR OLAN YORUMLAR + YENİLERİN EKLENECEĞİ ALAN -->
+        <div class="row g-4" id="yorumlarAlani">
             <div class="col-md-4">
-                <div class="testimonial-card p-4 shadow">
+                <div class="testimonial-card p-3 shadow rounded">
                     <p>"Harika bir hizmet aldım! Araçlar çok temiz ve konforluydu."</p>
-                    <h6 class="fw-bold text-end">- Ahmet Yılmaz</h6>
+                    <h6 class="fw-bold text-end mb-0">- Ahmet Yılmaz</h6>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="testimonial-card p-4 shadow">
+                <div class="testimonial-card p-3 shadow rounded">
                     <p>"Havalimanı transferi için mükemmel bir tercih. Çok profesyoneller."</p>
-                    <h6 class="fw-bold text-end">- Ayşe Kaya</h6>
+                    <h6 class="fw-bold text-end mb-0">- Ayşe Kaya</h6>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="testimonial-card p-4 shadow">
+                <div class="testimonial-card p-3 shadow rounded">
                     <p>"Araçlar çok temiz ve bakımlıydı. Yolculuğum sorunsuz geçti. Harika bir hizmet!"</p>
-                    <h6 class="fw-bold text-end">- Mehmet Yılmaz</h6>
+                    <h6 class="fw-bold text-end mb-0">- Mehmet Yılmaz</h6>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="testimonial-card p-4 shadow">
+                <div class="testimonial-card p-3 shadow rounded">
                     <p>"Rezervasyon süreci çok kolaydı. Güler yüzlü ve yardımcı bir ekip var."</p>
-                    <h6 class="fw-bold text-end">- Elif Demir</h6>
+                    <h6 class="fw-bold text-end mb-0">- Elif Demir</h6>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="testimonial-card p-4 shadow">
+                <div class="testimonial-card p-3 shadow rounded">
                     <p>"Fiyatlar gerçekten uygun ve araç seçenekleri oldukça geniş. Kesinlikle tavsiye ederim."</p>
-                    <h6 class="fw-bold text-end">- Ahmet Çelik</h6>
+                    <h6 class="fw-bold text-end mb-0">- Ahmet Çelik</h6>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="testimonial-card p-4 shadow">
+                <div class="testimonial-card p-3 shadow rounded">
                     <p>"Havalimanında zamanında teslim aldım, her şey tam da istediğim gibiydi. Teşekkürler!"</p>
-                    <h6 class="fw-bold text-end">- Fatma Şahin</h6>
+                    <h6 class="fw-bold text-end mb-0">- Fatma Şahin</h6>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="testimonial-card p-4 shadow">
+                <div class="testimonial-card p-3 shadow rounded">
                     <p>"Düğünümdeki araç hizmeti mükemmeldi. Çok teşekkür ederim!"</p>
-                    <h6 class="fw-bold text-end">- Mehmet Demir</h6>
+                    <h6 class="fw-bold text-end mb-0">- Mehmet Demir</h6>
                 </div>
             </div>
         </div>
+
+        <!-- YORUM EKLEME FORMU -->
+        <div class="mt-5">
+            <h4 class="mb-3 fw-semibold text-white">Yorum Bırakın</h4>
+            <form id="yorumFormu" class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" id="isim" class="form-control" placeholder="Ad Soyad" required />
+                </div>
+                <div class="col-md-12">
+                    <textarea id="yorum" class="form-control" rows="3" placeholder="Yorumunuz" required></textarea>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Yorumu Gönder</button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>
+
+<script>
+    document.getElementById("yorumFormu").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const isim = document.getElementById("isim").value.trim();
+      const yorum = document.getElementById("yorum").value.trim();
+      const tarih = new Date().toLocaleDateString("tr-TR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+
+      if (isim && yorum) {
+        const yeniYorum = document.createElement("div");
+        yeniYorum.classList.add("col-md-4");
+        yeniYorum.innerHTML = `
+          <div class="testimonial-card p-3 shadow rounded">
+            <p>"${yorum}"</p>
+            <h6 class="fw-bold text-end mb-0">- ${isim}</h6>
+            <small class="text-end d-block text-muted">${tarih}</small>
+          </div>
+        `;
+
+        document.getElementById("yorumlarAlani").prepend(yeniYorum);
+        document.getElementById("yorumFormu").reset();
+      }
+    });
+</script>
+
 
 
 
 <section class="faq-section parallax py-5">
-  <div class="container">
-    <h2 class="text-center mb-4 fw-bold">Sıkça Sorulan Sorular</h2>
-    <div class="accordion" id="faqAccordion">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-            Araç kiralama koşulları nelerdir?
-          </button>
-        </h2>
-        <div id="faq1" class="accordion-collapse collapse show">
-          <div class="accordion-body">
-            Araç kiralamak için geçerli bir ehliyet ve kimlik gereklidir.
-          </div>
+    <div class="container">
+        <h2 class="text-center mb-4 fw-bold">Sıkça Sorulan Sorular</h2>
+        <div class="accordion" id="faqAccordion">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                        Araç kiralama koşulları nelerdir?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Araç kiralamak için geçerli bir ehliyet ve kimlik gereklidir.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                        Ödemeyi nasıl yapabilirim?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                        Kiralama süresi nasıl belirleniyor?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Kiralama süresi müşteri isteğine göre günlük, haftalık veya aylık olarak ayarlanabilir.
+                    </div>
+                </div>
+            </div>
+            
+
+
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-            Ödemeyi nasıl yapabilirim?
-          </button>
-        </h2>
-        <div id="faq2" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-            Ödemeyi nasıl yapabilirim?
-          </button>
-        </h2>
-        <div id="faq2" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-            Ödemeyi nasıl yapabilirim?
-          </button>
-        </h2>
-        <div id="faq2" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-            Ödemeyi nasıl yapabilirim?
-          </button>
-        </h2>
-        <div id="faq2" class="accordion-collapse collapse">
-          <div class="accordion-body">
-            Ödemeyi kredi kartı veya nakit olarak yapabilirsiniz.
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
-
-
