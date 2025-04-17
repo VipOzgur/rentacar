@@ -22,49 +22,60 @@
 
 
 
-<section class="car-cards-section parallax py-5">
+
+
+
+
+
+
+<section class="car-cards-section py-5">
   <div class="container">
-    <h2 class="text-center mb-5 fw-bold">Araçlarımız</h2>
-    <div class="row g-4">
-      <!-- Dinamik Kart -->
-   <div class="row">
-        @foreach (var item in Model)
-        { 
-            <div class="col-md-4 mb-4">
-                <div class="card flip-card">
-                    <!-- Kartın Ön Yüzü -->
-                    <div class="card-front">
-                        <img src="@item.Profil" alt="Araç Fotoğrafı" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Marka @item.Model</h5>
-                            <p class="card-text">Açıklama: @item.Aciklama</p>
-                            <p class="card-text">Yakıt: @item.Yakit</p>
-                            <p class="card-text">Fiyat: @item.Fiyat TL/gün</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Detaylar</a>
-                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning">Düzenle</a>
-                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">Sil</a>
-                            <button class="btn btn-secondary flip-btn">Döndür</button> <!-- Döndür Butonu -->
+    <h2 class="text-center mb-4 fw-bold text-white">Araçlarımız</h2>
+
+    <div class="carousel-wrapper">
+      <button class="carousel-btn" id="prevBtn">←</button>
+
+      <div class="carousel-container" id="carousel">
+        @{
+                    DateTime today1 = DateTime.Today.AddDays(1);
+                    DateTime tomorrow1 = DateTime.Today.AddDays(2);
+                    Search search = ViewBag.search as Search;
+
+                    if (search?.StartDate.HasValue == true && search?.FinishDate.HasValue == true)
+                    {
+                        today1 = search.StartDate.Value;
+                        tomorrow1 = search.FinishDate.Value;
+                    }
+                }
+
+                @foreach (var item in Model)
+                {
+                    <div class="custom-col p-2">
+                        <div class="car-card">
+                            <img src="@item.Profil" alt="@item.Marka @item.Model" style="height: 200px; object-fit: cover;" />
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Marka @item.Model</h5>
+                                <p class="card-text">Açıklama: @item.Aciklama</p>
+                                <p class="card-text">Yakıt: @item.Yakit</p>
+                                <p class="card-text">Fiyat: @item.Fiyat TL/gün</p>
+                                <div class="mt-2">
+                                    <a asp-action="Create"
+                                       asp-route-aracid="@item.Id"
+                                       asp-route-today="@today1.ToString("yyyy-MM-dd")"
+                                       asp-route-tomorrow="@tomorrow1.ToString("yyyy-MM-dd")"
+                                       class="btn btn-primary btn-sm">
+                                        Hemen Kiralayınız
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Kartın Arka Yüzü (Boş Alan) -->
-                    <div class="card-back">
-                        <!-- Burada boş bir alan olacak -->
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-</div>
+                }
 
 
+      </div>
 
-
-      
-      <!-- Başka bir kart -->
-      
+      <button class="carousel-btn" id="nextBtn">→</button>
     </div>
   </div>
 </section>

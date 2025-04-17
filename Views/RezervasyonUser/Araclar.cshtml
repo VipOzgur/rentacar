@@ -1,94 +1,76 @@
 ﻿@model IEnumerable<Rentacar.Models.Araclar>
 
 @{
-    ViewData["Title"] = "Araclar";
+    ViewData["Title"] = "Araçlar";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@await Html.PartialAsync("_Search", null)
-<h1>Araclar</h1>
-@{
-    DateTime today1 = DateTime.Today.AddDays(1);
-    DateTime tomorrow1 = DateTime.Today.AddDays(2);
-
-    // ViewBag.search değişkenini Search türüne dönüştür
-    Search search = ViewBag.search as Search;
-
-    if (search?.StartDate.HasValue == true && search?.FinishDate.HasValue == true)
-    {
-        today1 = search.StartDate.Value;
-        tomorrow1 = search.FinishDate.Value;
+}  
+@section ozelCss {
+        <link rel="stylesheet" href="~/css/araclar.css" asp-append-version="true" />
     }
-}
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Profil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Aciklama)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marka)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vites)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fiyat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Depozito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Km)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MotorGucu)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profil)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Aciklama)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vites)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fiyat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Depozito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Km)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MotorGucu)
-            </td>
-            <td>
-                    <a asp-action="Create" asp-route-aracid="@item.Id" asp-route-today="@today1.ToString("yyyy-MM-dd")" asp-route-tomorrow="@tomorrow1.ToString("yyyy-MM-dd")">Kirala</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container py-4">
+    <div class="row">
+        <!-- Sol taraf: Form -->
+        <div class="col-md-4 mb-3">
+            @await Html.PartialAsync("_Search", null)
+        </div>
+
+        <!-- Sağ taraf: İçerik -->
+        <div class="col-md-8">
+            <div class="p-4 rounded" style="background-color: #f5f8fc;">
+                <h2 class="mb-3">🚗 Onur Rent A Car – Yozgat Oto Kiralama Hizmetleri</h2>
+                <p>
+                    Yozgat’ta güvenilir ve konforlu araç kiralamanın adresi: Onur Rent A Car! Geniş araç filomuz, uygun fiyat seçeneklerimiz ve müşteri memnuniyetine verdiğimiz önem ile günlük, haftalık veya uzun dönem araç kiralama ihtiyaçlarınızda yanınızdayız.
+
+                    Havalimanı transferi, şehir içi ulaşım ve özel günler için araç çözümleriyle Yozgat’ta kaliteli hizmeti uygun fiyata sunuyoruz.
+
+                    Onur Rent A Car ile yola güvenle çıkın
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <h2 class="text-center fw-bold mb-4">Araçlar</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @{
+            DateTime today1 = DateTime.Today.AddDays(1);
+            DateTime tomorrow1 = DateTime.Today.AddDays(2);
+            Search search = ViewBag.search as Search;
+
+            if (search?.StartDate.HasValue == true && search?.FinishDate.HasValue == true)
+            {
+                today1 = search.StartDate.Value;
+                tomorrow1 = search.FinishDate.Value;
+            }
+        }
+
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow rounded-4 bg-light">
+                    <img src="@item.Profil" class="card-img-top" alt="@item.Marka @item.Model" style="height: 200px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">@item.Marka @item.Model</h5>
+                        <p class="card-text">@item.Aciklama</p>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item"><strong>Vites:</strong> @item.Vites</li>
+                            <li class="list-group-item"><strong>Fiyat:</strong> @item.Fiyat TL/gün</li>
+                            <li class="list-group-item"><strong>Depozito:</strong> @item.Depozito TL</li>
+                            <li class="list-group-item"><strong>KM:</strong> @item.Km</li>
+                            <li class="list-group-item"><strong>Motor Gücü:</strong> @item.MotorGucu</li>
+                        </ul>
+                        <a asp-action="Create"
+                           asp-route-aracid="@item.Id"
+                           asp-route-today="@today1.ToString("yyyy-MM-dd")"
+                           asp-route-tomorrow="@tomorrow1.ToString("yyyy-MM-dd")"
+                           class="btn btn-primary w-100 rounded-pill fw-semibold">
+                            Kirala
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
