@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rentacar.Models;
 
 public partial class Rezervasyon : BaseEntity
 {
+    [NotMapped]
+    public List<int> SelectedExtralar { get; set; } = new();
+
     public int AracId { get; set; }
 
     public int UserId { get; set; }
@@ -34,4 +38,6 @@ public partial class Rezervasyon : BaseEntity
     public virtual Lokasyonlar? TeslimLokasyon { get; set; }
 
     public virtual User? User { get; set; } = null!;
+
+    public virtual ICollection<Extralar> Extralar { get; set; } = new List<Extralar>();
 }

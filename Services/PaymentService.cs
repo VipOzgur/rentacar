@@ -32,8 +32,19 @@ namespace Rentacar.Services
             return await CheckoutForm.Retrieve(request, options);
         }
 
-        public async Task<string> CreateCheckoutForm(decimal price, string userEmail)
+        public async Task<string> CreateCheckoutForm(Rezervasyon rezervasyon)
         {
+            string lokasyon;
+            if (rezervasyon?.AlisLokasyon == null && rezervasyon?.TeslimLokasyon == null)
+            {
+                lokasyon = "Yozgat Ofis";
+            }
+            else
+            {
+                var alis = rezervasyon?.AlisLokasyon?.Ad ?? "Bilinmeyen Alış";
+                var teslim = rezervasyon?.TeslimLokasyon?.Ad ?? "Bilinmeyen Teslim";
+                lokasyon = $"{alis} => {teslim}";
+            }
             Iyzipay.Options iyzicoOptions = new Iyzipay.Options
             {
                 ApiKey = _options.ApiKey,
@@ -44,9 +55,9 @@ namespace Rentacar.Services
             CreateCheckoutFormInitializeRequest request = new CreateCheckoutFormInitializeRequest
             {
                 Locale = Locale.TR.ToString(),
-                ConversationId = Guid.NewGuid().ToString(),
-                Price = price.ToString("0.00",CultureInfo.InvariantCulture),
-                PaidPrice = price.ToString("0.00", CultureInfo.InvariantCulture),
+                ConversationId = rezervasyon.UserId+"-"+Guid.NewGuid().ToString(),
+                Price = rezervasyon.Fiyat.Value.ToString("0.00",CultureInfo.InvariantCulture),
+                PaidPrice = rezervasyon.Fiyat.Value.ToString("0.00", CultureInfo.InvariantCulture),
                 Currency = Currency.TRY.ToString(),
                 BasketId = "B67832",
                 PaymentGroup = PaymentGroup.PRODUCT.ToString(),
@@ -55,24 +66,24 @@ namespace Rentacar.Services
 
             request.Buyer = new Buyer
             {
-                Id = "BY789",
-                Name = "Rıdvan",
-                Surname = "Çam",
-                GsmNumber = "+905350000000",
-                Email = userEmail,
-                IdentityNumber = "74300864791",
-                RegistrationAddress = "Adres",
+                Id = rezervasyon.User.Id.ToString(),
+                Name = rezervasyon.User.Ad,
+                Surname = rezervasyon.User.Soyad,
+                GsmNumber = rezervasyon.User.Telefon,
+                Email = rezervasyon.User.Eposta,
+                IdentityNumber = rezervasyon.User.Id.ToString()+DateTime.Now.Year.ToString(),
+                RegistrationAddress = rezervasyon.User.Adres??"Default Yozgat",
                 Ip = "85.34.78.112",
-                City = "İstanbul",
+                City = "Yozgat",
                 Country = "Türkiye"
             };
 
             request.ShippingAddress = new Address
             {
-                ContactName = "Rıdvan Çam",
-                City = "İstanbul",
+                ContactName = "Onur Rentacar",
+                City = "Yozgat",
                 Country = "Türkiye",
-                Description = "Kargo adresi"
+                Description = lokasyon
             };
 
             request.BillingAddress = request.ShippingAddress;
@@ -81,11 +92,11 @@ namespace Rentacar.Services
         {
             new BasketItem
             {
-                Id = "BI101",
-                Name = "Araç Kiralama",
+                Id = rezervasyon.AracId.ToString(),
+                Name = (rezervasyon.Arac.Marka + " "+rezervasyon.Arac.Model )??"Araç Kiralama",
                 Category1 = "RentACar",
                 ItemType = BasketItemType.PHYSICAL.ToString(),
-                Price = price.ToString("0.00",CultureInfo.InvariantCulture)
+                Price = rezervasyon.Fiyat.Value.ToString("0.00",CultureInfo.InvariantCulture)
             }
         };
 

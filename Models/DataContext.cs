@@ -37,6 +37,8 @@ public partial class DataContext : DbContext
 
     public virtual DbSet<Yorumlar> Yorumlars { get; set; }
 
+    public DbSet<RezervasyonExtra> RezervasyonExtralar { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)=> optionsBuilder.UseSqlite("Data Source=.//Data//data.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -108,6 +110,18 @@ public partial class DataContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.Rezervasyons)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+        modelBuilder.Entity<Rezervasyon>()
+    .HasMany(r => r.Extralar)
+    .WithMany(e => e.Rezervasyons)
+    .UsingEntity<Dictionary<string, object>>(
+        "RezervasyonExtralar",
+        j => j.HasOne<Extralar>().WithMany().HasForeignKey("ExtraId"),
+        j => j.HasOne<Rezervasyon>().WithMany().HasForeignKey("RezervasyonId"),
+        j =>
+        {
+            j.HasKey("RezervasyonId", "ExtraId");
+            j.ToTable("RezervasyonExtralar");
         });
 
         modelBuilder.Entity<Role>(entity =>

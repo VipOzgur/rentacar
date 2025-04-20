@@ -1,5 +1,8 @@
-﻿namespace Rentacar.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Rentacar.Models
 {
+    [NotMapped]
     public class IyzicoOptions
     {
         public string ApiKey { get; set; }
