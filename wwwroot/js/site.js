@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+//const carousel = document.getElementById('carousel');
+//const nextBtn = document.getElementById('nextBtn');
+//const prevBtn = document.getElementById('prevBtn');
 
-// Write your JavaScript code.
+//nextBtn.addEventListener('click', () => {
+//  carousel.scrollBy({ left: 320, behavior: 'smooth' });
+//});
+
+//prevBtn.addEventListener('click', () => {
+//  carousel.scrollBy({ left: -320, behavior: 'smooth' });
+//});

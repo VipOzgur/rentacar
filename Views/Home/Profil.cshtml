@@ -5,9 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Profil</h1>
+<div class="profile-container">
+  <h1>Profil</h1>
 
-<div>
+  <div>
     <h4>User</h4>
     <hr />
     <dl class="row">
@@ -79,7 +80,11 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="ProfilEdit" >Güncelle</a> |
-    <a asp-action="Index">Ana Sayfa</a>
+
+
+  <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+      <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-secondary">Profili Düzenle</a>
+      <a asp-action="Index" class="btn btn-outline-secondary">Geri Dön</a>
+      
+  </div>
 </div>

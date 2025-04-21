@@ -1,0 +1,21 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    line-height: 1.7;
+    background-color: #f9f9f9;
+    color: #333;
+    text-align: center; /* Tüm metinleri ortalamak için eklendi */
+}
+
+h1, h2 {
+    color: black;
+    text-align: center; /* Başlıkları da ortalamak için eklendi */
+}
+
+h1 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 30px;
+}

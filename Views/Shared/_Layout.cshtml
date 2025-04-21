@@ -16,15 +16,17 @@
     <meta name="description" content="Rent a car hizmetlerimizle uygun fiyatlı araçlar kiralayabilirsiniz." />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-   
-</head>
 
+    @RenderSection("ozelCss", required: false)
+</head>
+    
 <body>
     <header class="bg-white shadow-sm sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light container-fluid px-4">
-        <a class="navbar-brand fw-bold text-primary" asp-area="" asp-controller="Home" asp-action="Index">
-            Rentacar
-        </a>
+        <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
+    <img src="~/svg/rentacar-logo.svg" alt="Logo" class="logo-img" />
+    <span class="brand-text">Onur Rentacar</span>
+</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,6 +45,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary rounded-pill px-4 py-1" asp-area="" asp-controller="RezervasyonUser" asp-action="Index">Rezervasyonlarım</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link btn btn-outline-primary rounded-pill px-4 py-1" asp-area="" asp-controller="Login" asp-action="LogOut">Çıkış Yap</a>
                     </li>
                 }
                 else
@@ -63,35 +68,16 @@
         </div>
     </nav>
 </header>
-
-
-    
-
-
 <main class="flex-fill">
     <div class="content-area">
         @RenderBody()
     </div>
 </main>
-
-
-
-
-
-
-
-
     <footer class="bg-dark text-white py-3 mt-auto">
         <div class="container text-center">
-            <small>&copy; 2025 Rentacar | <a class="text-primary" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></small>
+            <small>&copy; @DateTime.Now.Year.ToString() Rentacar | <a class="text-primary" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></small>
         </div>
     </footer>
-
-
-
-
-
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
