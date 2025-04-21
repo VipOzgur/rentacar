@@ -22,49 +22,52 @@
     
 <body>
     <header class="bg-white shadow-sm sticky-top">
-    <nav class="navbar navbar-expand-lg navbar-light container-fluid px-4">
-        <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
-    <img src="~/svg/rentacar-logo.svg" alt="Logo" class="logo-img" />
-    <span class="brand-text">Onur Rentacar</span>
-</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-center">
-                @if (isAuthenticated)
-                {
-                    <li class="nav-item d-flex align-items-center me-3">
+        <nav class="navbar navbar-expand-lg navbar-light container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
+                <img src="~/svg/rentacar-logo.svg" alt="Logo" class="logo-img" />
+                <span class="brand-text">Onur Rent a car</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    @if (isAuthenticated)
+                    {
+                        <li class="nav-item d-flex align-items-center me-3">
                             <a asp-action="Profil" asp-controller="Home">
+                                <img src="@userProfil" alt="User Profil" class="rounded-circle me-2 profile-image">
+                                <span class="fw-bold text-dark">@userName</span>
+                                <small class="text-muted ms-1">(@userRole)</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-primary rounded-pill px-4 py-1" asp-area="" asp-controller="RezervasyonUser" asp-action="Index">Rezervasyonlarım</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-primary rounded-pill px-4 py-1" asp-action="Login" asp-controller="Login">
+                                Giriş Yap / Kayıt Ol
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item ms-3">
+                        <a class="nav-link text-dark fw-semibold" asp-area="" asp-controller="RezervasyonUser" asp-action="Araclar">Araçlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-                        <img src="@userProfil" alt="User Profil" class="rounded-circle me-2 profile-image">
-                        <span class="fw-bold text-dark">@userName</span>
-                        <small class="text-muted ms-1">(@userRole)</small>
-                        </a>    
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary rounded-pill px-4 py-1" asp-area="" asp-controller="RezervasyonUser" asp-action="Index">Rezervasyonlarım</a>
-                    </li>
-                }
-                else
-                {
-                    <li class="nav-item">
-                        <a class="btn btn-primary rounded-pill px-4 py-1" asp-action="Login" asp-controller="Login">
-                            Giriş Yap / Kayıt Ol
-                        </a>
-                    </li>
-                }
-                <li class="nav-item ms-3">
-                    <a class="nav-link text-dark fw-semibold" asp-area="" asp-controller="RezervasyonUser" asp-action="Araclar">Araçlar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+      
+    </header>
+
+
 <main class="flex-fill">
     <div class="content-area">
         @RenderBody()
@@ -72,7 +75,7 @@
 </main>
     <footer class="bg-dark text-white py-3 mt-auto">
         <div class="container text-center">
-            <small>&copy; @DateTime.Now.Year.ToString() Rentacar | <a class="text-primary" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></small>
+            <small>&copy; @DateTime.Now.Year.ToString() KYT SOFTWARE | <a class="text-primary" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></small>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

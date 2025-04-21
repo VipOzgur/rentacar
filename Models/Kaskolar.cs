@@ -10,4 +10,6 @@ public partial class Kaskolar : BaseEntity
     public int? GunlukFiyat { get; set; }
 
     public int? SaatlikFiyat { get; set; }
+
+    public virtual ICollection<Rezervasyon> Rezervasyonlar { get; set; }=new List<Rezervasyon>();
 }

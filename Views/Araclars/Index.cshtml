@@ -33,7 +33,23 @@
             <td data-label="Marka">@Html.DisplayFor(modelItem => item.Marka)</td>
             <td data-label="Model">@Html.DisplayFor(modelItem => item.Model)</td>
             <td data-label="Fiyat">@Html.DisplayFor(modelItem => item.Fiyat)</td>
-            <td data-label="Durum">@Html.DisplayFor(modelItem => item.Durum)</td>
+                    <td data-label="Durum">
+                        @{
+                            if (item.Durum == 1)
+                            {
+                                @:Aktif
+                            }
+                            else if (item.Durum == 2)
+                            {
+                                @:Pasif
+                            }
+                            else
+                            {
+                                @:Durum bilinmiyor
+                            }
+                        }
+                    </td>
+
             <td data-label="Aksiyonlar" class="action-buttons">
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-xs btn-primary">Düzenle</a>
                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-xs btn-info">Detaylar</a>

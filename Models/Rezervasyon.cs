@@ -34,4 +34,6 @@ public partial class Rezervasyon : BaseEntity
     public virtual Lokasyonlar? TeslimLokasyon { get; set; }
 
     public virtual User? User { get; set; } = null!;
+
+    public virtual Kaskolar? Kasko { get; set; }
 }

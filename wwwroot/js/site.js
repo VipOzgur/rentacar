@@ -7,5 +7,5 @@
 //});
 
 //prevBtn.addEventListener('click', () => {
-//  carousel.scrollBy({ left: -320, behavior: 'smooth' });
+// carousel.scrollBy({ left: -320, behavior: 'smooth' });
 //});

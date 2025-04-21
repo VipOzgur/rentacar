@@ -11,12 +11,15 @@
         <div class="details-grid">
             <div class="details-item">
                 <div class="details-label">Başlangıç Tarihi</div>
-                <div class="details-value">@Html.DisplayFor(model => model.StartDate)</div>
+                <div class="details-value">@Model.StartDate?.ToString("dd.MM.yyyy")</div>
             </div>
+
             <div class="details-item">
                 <div class="details-label">Bitiş Tarihi</div>
-                <div class="details-value">@Html.DisplayFor(model => model.FinishDate)</div>
+                <div class="details-value">@Model.FinishDate?.ToString("dd.MM.yyyy")</div>
             </div>
+
+
             <div class="details-item">
                 <div class="details-label">Durum</div>
                 <div class="details-value">@Html.DisplayFor(model => model.Durum)</div>
@@ -27,7 +30,7 @@
             </div>
             <div class="details-item">
                 <div class="details-label">Kasko</div>
-                <div class="details-value">@Html.DisplayFor(model => model.KaskoId)</div>
+                <div class="details-value">@Html.DisplayFor(model => model.Kasko.Ad)</div>
             </div>
             <div class="details-item">
                 <div class="details-label">Fiyat</div>
@@ -39,19 +42,19 @@
             </div>
             <div class="details-item">
                 <div class="details-label">Alış Lokasyonu</div>
-                <div class="details-value">@Html.DisplayFor(model => model.AlisLokasyon.Id)</div>
+                <div class="details-value">@Html.DisplayFor(model => model.AlisLokasyon.Ad)</div>
             </div>
             <div class="details-item">
                 <div class="details-label">Araç</div>
-                <div class="details-value">@Html.DisplayFor(model => model.Arac.Id)</div>
+                <div class="details-value">@Html.DisplayFor(model => model.Arac.Aciklama)</div>
             </div>
             <div class="details-item">
                 <div class="details-label">Teslim Lokasyonu</div>
-                <div class="details-value">@Html.DisplayFor(model => model.TeslimLokasyon.Id)</div>
+                <div class="details-value">@Html.DisplayFor(model => model.TeslimLokasyon.Ad)</div>
             </div>
             <div class="details-item">
                 <div class="details-label">Kullanıcı</div>
-                <div class="details-value">@Html.DisplayFor(model => model.User.Id)</div>
+                <div class="details-value">@Html.DisplayFor(model => model.User.Ad)</div>
             </div>
         </div>
     </div>
