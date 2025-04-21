@@ -24,7 +24,7 @@ namespace Rentacar.Controllers
             ClaimsPrincipal claimUser = HttpContext.User;
             if (claimUser.Identity.IsAuthenticated)
             {
-                TempData["mesaj"] = $"Ad: {User.FindFirst(ClaimTypes.NameIdentifier).Value} Role: {User.FindFirst(ClaimTypes.Role).Value} Giris yapıldı";
+                TempData["mesaj"] = $"Ad: {User.FindFirst(ClaimTypes.Name).Value} Role: {User.FindFirst(ClaimTypes.Role).Value} Giris yapıldı";
 
                 return RedirectToAction("Index", "Admin");
             }

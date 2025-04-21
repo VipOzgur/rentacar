@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Rentacar.Models;
+using Rentacar.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,9 @@ x.LogoutPath = "/Login/LogOut";
 x.ExpireTimeSpan = TimeSpan.FromMinutes(20);
 x.SlidingExpiration = true;
 });
+
+builder.Services.Configure<IyzicoOptions>(builder.Configuration.GetSection("IyzicoOptions"));
+builder.Services.AddScoped<PaymentService>();
 
 var app = builder.Build();
 

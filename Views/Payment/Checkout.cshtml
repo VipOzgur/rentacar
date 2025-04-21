@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/css/odeme.css" asp-append-version="true" />
 }
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 
@@ -41,10 +41,6 @@
 @if (ViewBag.CheckoutForm != null)
 {
     @Html.Raw(ViewBag.CheckoutForm)
-}
-else
-{
-    <p>Form yüklenemedi.</p>
 }
 <div class="page-wrapper">
 
@@ -201,6 +197,7 @@ else
         const extralarCheckboxes = document.querySelectorAll("input[type='checkbox']");
         const alisLokasyon = document.querySelector("select[name='AlisLokasyonId']");
         const teslimLokasyon = document.querySelector("select[name='TeslimLokasyonId']");
+        const kasko = document.querySelector("select[name='KaskoId']"); ///burda hata var
 
         // ViewBag'den gelen değerler
         const gunFarki = @gunFarki;
@@ -222,13 +219,15 @@ else
             // Seçili ekstraların fiyatlarını ekle
             extralarCheckboxes.forEach(checkbox => {
                 if (checkbox.checked) {
-                    toplamFiyat += parseFloat(checkbox.data-fiyat) * gunFarki;
+                    toplamFiyat += parseFloat(checkbox.dataset.fiyat) * gunFarki;
                 }
             });
 
             // Lokasyon fiyatlarını ekle
+            console.log(getSelectedLocationPrice(kasko));
             toplamFiyat += getSelectedLocationPrice(alisLokasyon);
             toplamFiyat += getSelectedLocationPrice(teslimLokasyon);
+            toplamFiyat += getSelectedLocationPrice(kasko);
 
             // Toplam fiyatı input'a yaz
             toplamInput.value = toplamFiyat;
@@ -238,6 +237,7 @@ else
         extralarCheckboxes.forEach(checkbox => checkbox.addEventListener("change", hesaplaToplam));
         alisLokasyon.addEventListener("change", hesaplaToplam);
         teslimLokasyon.addEventListener("change", hesaplaToplam);
+        kasko.addEventListener("change", hesaplaToplam);
 
         // Sayfa yüklendiğinde toplamı hesapla
         hesaplaToplam();

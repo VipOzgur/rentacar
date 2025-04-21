@@ -11,4 +11,6 @@ public partial class Extralar : BaseEntity
     public int? Fiyat { get; set; }
 
     public int? Durum { get; set; }
+
+    public virtual ICollection<Rezervasyon> Rezervasyons { get; set; } = new List<Rezervasyon>();
 }

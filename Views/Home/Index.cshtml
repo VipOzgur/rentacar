@@ -60,7 +60,7 @@
                                 <p class="card-text">Yakıt: @item.Yakit</p>
                                 <p class="card-text">Fiyat: @item.Fiyat TL/gün</p>
                                 <div class="mt-2">
-                                    <a asp-action="Create"
+                                    <a asp-action="Checkout" asp-controller="Payment"
                                        asp-route-aracid="@item.Id"
                                        asp-route-today="@today1.ToString("yyyy-MM-dd")"
                                        asp-route-tomorrow="@tomorrow1.ToString("yyyy-MM-dd")"

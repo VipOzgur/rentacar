@@ -61,7 +61,8 @@
                             <li class="list-group-item"><strong>KM:</strong> @item.Km</li>
                             <li class="list-group-item"><strong>Motor Gücü:</strong> @item.MotorGucu</li>
                         </ul>
-                        <a asp-action="Create"
+                        <a asp-action="Checkout"
+                           asp-controller="Payment"
                            asp-route-aracid="@item.Id"
                            asp-route-today="@today1.ToString("yyyy-MM-dd")"
                            asp-route-tomorrow="@tomorrow1.ToString("yyyy-MM-dd")"

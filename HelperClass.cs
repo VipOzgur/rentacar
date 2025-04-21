@@ -62,16 +62,16 @@ namespace Rentacar
 
                 // Görüntüyü okuyun
                 var image = Image.Load(formFile.OpenReadStream());
-                
-                    string imageExtension = Path.GetExtension(formFile.FileName);
-                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagess", imageName);
-                    // WebP formatında kaydet
-                    var options = new WebpEncoder
-                    {
-                        Quality = 100 // Kaliteyi belirleyebilirsiniz (0-100)
-                    };
+
+                string imageExtension = Path.GetExtension(formFile.FileName);
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imagess", imageName);
+                // WebP formatında kaydet
+                var options = new WebpEncoder
+                {
+                    Quality = 100 // Kaliteyi belirleyebilirsiniz (0-100)
+                };
                 image.SaveAsync(imagePath, options);
-                
+
             }
             catch (Exception ex)
             {
